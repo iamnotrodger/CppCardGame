@@ -18,7 +18,7 @@ namespace cards
     protected:
         void print(std::ostream &out) const
         {
-            out << "R" << std::endl;
+            out << "R";
         };
     };
 } // namespace cards

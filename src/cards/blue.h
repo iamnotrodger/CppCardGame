@@ -19,7 +19,7 @@ namespace cards
     protected:
         void print(std::ostream &out) const
         {
-            out << "B" << std::endl;
+            out << "B";
         };
     };
 } // namespace cards
