@@ -3,6 +3,8 @@
 #include "cards/chili.h"
 #include "cards/deck.h"
 #include "cards/cardFactory.h"
+#include "cards/player.h"
+#include "cards/discardPile.h"
 using namespace std;
 
 int main()

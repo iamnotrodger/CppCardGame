@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include "card.h"
 
 namespace cards
@@ -10,11 +11,12 @@ namespace cards
     class Deck
     {
     private:
-        std::vector<Card> deck;
+        std::vector<Card *> deck;
 
     public:
         //Constructor which acceopts an istream and reconstructs the deck from file
         Deck(std::istream &, const CardFactory *);
+        ~Deck();
         //Returns and rmoeves the top card from the deck
         Card *draw();
         friend std::ostream &operator<<(std::ostream &os, const Deck &d);
