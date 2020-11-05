@@ -1,10 +1,12 @@
 #pragma once
 #include <vector>
-#include "cardFactory.h"
 #include "card.h"
 
 namespace cards
 {
+    //cannot to an #include "cardFactory.h" since we include this on the CardFactory
+    class CardFactory;
+
     class Deck
     {
     private:
@@ -20,9 +22,9 @@ namespace cards
 
     inline std::ostream &operator<<(std::ostream &os, const Deck &d)
     {
-        for (const Card &card : d.deck)
+        for (unsigned i = 0; i < d.deck.size(); i++)
         {
-            os << card;
+            os << d.deck[i];
         }
         return os;
     }

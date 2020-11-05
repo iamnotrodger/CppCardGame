@@ -1,7 +1,7 @@
 #pragma once
 #include "deck.h"
 
-namespace card
+namespace cards
 {
     class CardFactory
     {
@@ -11,4 +11,4 @@ namespace card
         static CardFactory *getFactory();
         Deck getDeck();
     };
-} // namespace card
+} // namespace cards

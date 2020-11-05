@@ -26,9 +26,9 @@ namespace cards
     inline std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
     {
         os << type << " : ";
-        for (const T &card : c.chain)
+        for (unsigned i = 0; i c.chain.size(); i++)
         {
-            os << card;
+            out << c.chain[i];
         }
         os << std::endl;
 
