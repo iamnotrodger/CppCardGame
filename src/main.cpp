@@ -10,6 +10,7 @@ using namespace std;
 int main()
 {
     cards::Chili b;
+    cards::Blue bl;
     cout << "Hello Wrold" << endl;
     cout << b.getName() << endl;
     cout << b;

@@ -6,10 +6,7 @@ namespace cards
     class Red : public Card
     {
     public:
-        int getCardsPerCoin(int coin)
-        {
-            return 1;
-        };
+        int getCardsPerCoin(int);
         std::string getName()
         {
             return "Red";

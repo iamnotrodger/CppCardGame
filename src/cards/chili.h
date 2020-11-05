@@ -6,14 +6,11 @@ namespace cards
     class Chili : public Card
     {
     public:
-        int getCardsPerCoin(int coin)
-        {
-            return 1;
-        };
         std::string getName()
         {
             return "Chili";
         }
+        int getCardsPerCoin(int);
 
     protected:
         void print(std::ostream &out) const
