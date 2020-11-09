@@ -14,11 +14,7 @@ namespace cards
 
     public:
         //Constructor
-        Player(std::string &n)
-        {
-            name = n;
-            coins = 0;
-        };
+        Player(std::string &n) : name(n), coins(0){};
         //reconstruct player form file
         Player(std::istream &, const CardFactory *);
         std::string getName()
