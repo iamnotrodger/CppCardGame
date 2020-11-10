@@ -3,3 +3,4 @@ src/main*
 !src/*.cpp
 src/test
 src/a.out
+src/*.exe
