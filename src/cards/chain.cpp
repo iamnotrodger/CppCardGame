@@ -1,4 +1,5 @@
 #include "chain.h"
+#include "card.h"
 
 namespace cards
 {
@@ -14,9 +15,10 @@ namespace cards
     }
 
     template <class T>
-    Chain<T> &Chain<T>::operator+=(Card *card)
+    Chain<T> &Chain<T>::operator+=(T card)
     {
-        return nullptr;
+        chain.push_back(card);
+        return *this;
     }
 
     template <class T>

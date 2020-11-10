@@ -18,11 +18,12 @@ namespace cards
         std::vector<T> chain;
 
     public:
+        Chain();
         //constructor which accepts an istream and reconstructs the chain from file when a game is resumed
         Chain(std::istream &, const CardFactory *);
         ~Chain();
         //Adds a card to the Chain. If the run-time type does not match the template type of the chain an exception of type IlligalType needs to be raised
-        Chain<T> &operator+=(Card *);
+        Chain<T> &operator+=(T);
         //Counts the number of cards in the current chain and returns the nubmer conisn according to the function Card::getCardsPerCoin
         int sell();
         friend std::ostream &operator<<(std::ostream &, const Chain<T> &);
