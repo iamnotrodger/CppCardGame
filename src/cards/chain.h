@@ -3,6 +3,7 @@
 #include <iostream>
 #include "card.h"
 #include "cardFactory.h"
+// #include "illegalType.h"
 
 namespace cards
 {
@@ -15,18 +16,28 @@ namespace cards
     {
     private:
         std::string type;
-        std::vector<T *> chain;
+        std::vector<Card *> chain;
 
     public:
         Chain(){};
         //constructor which accepts an istream and reconstructs the chain from file when a game is resumed
         Chain(std::istream &, const CardFactory *);
         ~Chain();
-        //Adds a card to the Chain. If the run-time type does not match the template type of the chain an exception of type IlligalType needs to be raised
-        Chain<T> &operator+=(T *);
-        //Counts the number of cards in the current chain and returns the nubmer conisn according to the function Card::getCardsPerCoin
+        //Adds a card to the Chain. If the run-time type does not match the template type of the chain an exception of type IllegalType needs to be raised
+        Chain<T> &operator+=(Card *);
+        //Counts the number of cards in the current chain and returns the number of coins according to the function Card::getCardsPerCoin
         int sell();
-        friend std::ostream &operator<<(std::ostream &, const Chain<T> &);
+        friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
+        {
+            os << c.type << " : ";
+            for (unsigned i = 0; i < c.chain.size(); i++)
+            {
+                os << *(c.chain[i]);
+            }
+            os << std::endl;
+
+            return os;
+        }
     };
 
     template <class T>
@@ -40,6 +51,39 @@ namespace cards
         os << std::endl;
 
         return os;
+    }
+
+    template <class T>
+    Chain<T>::Chain(std::istream &is, const CardFactory *cf)
+    {
+    }
+
+    template <class T>
+    Chain<T>::~Chain()
+    {
+        for (int i = 0; i < chain.size(); i++)
+        {
+            delete chain[i];
+        }
+        chain.clear();
+    }
+
+    template <class T>
+    Chain<T> &Chain<T>::operator+=(Card *card)
+    {
+        if (typeid(T) != typeid(*(card)))
+        {
+            throw IllegalType();
+        }
+        chain.push_back(card);
+        return *this;
+    }
+
+    template <class T>
+    int Chain<T>::sell()
+    {
+        int size = chain.size();
+        return 1;
     }
 
 } // namespace cards
