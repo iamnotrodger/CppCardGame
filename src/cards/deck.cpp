@@ -52,16 +52,21 @@ namespace cards
 
         std::random_shuffle(deck.begin(),deck.end());
 
-        for (int j = 0; j < 104; j++) {
+        for (int j = 0; j < 5; j++) {
             std::cout << deck[j]->getName() << std::endl;
         }
     }
 
     Deck::~Deck() {
-
+        for (int i = 0; i < deck.size(); i++) {
+            delete deck[i];
+        }
     }
 
     Card * Deck::draw() {
-        return NULL;
+        Card * topCard = deck[0];
+        deck.erase(deck.begin(),deck.begin() + 1);
+        // std::cout << topCard->getName() << std::endl;
+        return topCard;
     }
 }
