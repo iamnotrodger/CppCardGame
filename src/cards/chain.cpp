@@ -21,14 +21,14 @@ namespace cards
     template <class T>
     Chain<T> &Chain<T>::operator+=(T *card)
     {
-        // try
-        // {
-        //     chain.push_back(card);
-        // }
-        // catch (const std::exception &e)
-        // {
-        //     std::cout << e.what() << std::endl;
-        // }
+        try
+        {
+            chain.push_back(card);
+        }
+        catch (const std::exception &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
         return *this;
     }
 
