@@ -12,6 +12,7 @@ namespace cards
         std::list<Card *> cards;
 
     public:
+        TradeArea();
         //reconstructs the TradeArea from file
         TradeArea(std::istream &, const CardFactory *);
         //Adds the card to the trade are but it does not check if it is legal to place the card.

@@ -77,9 +77,13 @@ namespace cards
 
     Card *Deck::draw()
     {
+        if (deck.size() == 0) {
+            return NULL;
+        }
+
         Card *topCard = deck[0];
         deck.erase(deck.begin(), deck.begin() + 1);
         // std::cout << topCard->getName() << std::endl;
         return topCard;
     }
-} // namespace cards
+} 
