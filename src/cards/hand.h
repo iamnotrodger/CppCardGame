@@ -12,6 +12,7 @@ namespace cards
         std::vector<Card *> hand;
 
     public:
+        Hand();
         //reconstruct the hand from file
         Hand(std::istream &, const CardFactory *);
         //adds the card rear of the hand
