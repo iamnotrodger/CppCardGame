@@ -13,13 +13,14 @@ namespace cards
 
     public:
         //reconstruct the discard pile from file
+        DiscardPile();
         DiscardPile(std::istream &, const CardFactory *);
         ~DiscardPile();
-        //discard the care tot he pile
+        //discard the card to the pile
         DiscardPile &operator+=(Card *);
-        //Returns and removes the top card fromthe discard pile
+        //Returns and removes the top card from the discard pile
         Card *pickUp();
-        //returns but does not remove teh top card from the discard pile
+        //returns but does not remove the top card from the discard pile
         Card *top();
         friend std::ostream &operator<<(std::ostream &, const DiscardPile &);
 
