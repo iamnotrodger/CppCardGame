@@ -22,6 +22,6 @@ int main()
     chain += c3;
     chain += c4;
     chain += c5;
-    chain += c6;
+    // chain += c6;
     cout << chain;
 }
