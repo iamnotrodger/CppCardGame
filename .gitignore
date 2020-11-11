@@ -1,7 +1,6 @@
 .vscode
 src/main*
 !src/*.cpp
-src/test
 src/a.out
 src/*.exe
 src/test.cpp
