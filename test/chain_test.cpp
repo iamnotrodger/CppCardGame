@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../cards/chain.h"
-#include "../cards/card.h"
-#include "../cards/chili.h"
+#include "../src/cards/chain.h"
+#include "../src/cards/card.h"
+#include "../src/cards/chili.h"
 
 using namespace std;
 using namespace cards;
