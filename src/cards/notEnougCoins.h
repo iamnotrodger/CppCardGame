@@ -11,5 +11,5 @@ namespace cards
         {
             return "NotEnoughCoins: Damn bruh you a broke ass bitch";
         }
-    }
+    };
 } // namespace cards
