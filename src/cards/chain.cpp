@@ -11,13 +11,24 @@ namespace cards
     template <class T>
     Chain<T>::~Chain()
     {
-        //don't use vector::clear() if it storing pointers to objects
+        for (int i = 0; i < chain.size(); i++)
+        {
+            delete chain[i];
+        }
+        chain.clear();
     }
 
     template <class T>
-    Chain<T> &Chain<T>::operator+=(T card)
+    Chain<T> &Chain<T>::operator+=(T *card)
     {
-        chain.push_back(card);
+        // try
+        // {
+        //     chain.push_back(card);
+        // }
+        // catch (const std::exception &e)
+        // {
+        //     std::cout << e.what() << std::endl;
+        // }
         return *this;
     }
 
