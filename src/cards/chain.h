@@ -3,7 +3,7 @@
 #include <iostream>
 #include "card.h"
 #include "cardFactory.h"
-// #include "illegalType.h"
+#include "illegalType.h"
 
 namespace cards
 {
@@ -15,7 +15,6 @@ namespace cards
     class Chain : public Chain_Base
     {
     private:
-        std::string type;
         std::vector<Card *> chain;
 
     public:
@@ -29,34 +28,19 @@ namespace cards
         int sell();
         friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
         {
-            os << c.type << " : ";
             for (unsigned i = 0; i < c.chain.size(); i++)
             {
-                os << *(c.chain[i]);
+                if (i == 0)
+                {
+                    os << c.chain[i]->getName() << " \t ";
+                }
+                os << *(c.chain[i]) << " ";
             }
             os << std::endl;
 
             return os;
         }
     };
-
-    template <class T>
-    inline std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
-    {
-        os << c.type << " : ";
-        for (unsigned i = 0; i < c.chain.size(); i++)
-        {
-            os << c.chain[i];
-        }
-        os << std::endl;
-
-        return os;
-    }
-
-    template <class T>
-    Chain<T>::Chain(std::istream &is, const CardFactory *cf)
-    {
-    }
 
     template <class T>
     Chain<T>::~Chain()
