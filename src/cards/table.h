@@ -12,16 +12,19 @@ namespace cards
     private:
         Player playerOne;
         Player playerTwo;
+        Deck deck;
         DiscardPile discard;
         TradeArea trade;
+        bool playerOneTurn;
 
     public:
+        Table();
         Table(std::string, std::string);
-        //construct which acceps an isntream and reconstruct the Table from file
+        //construct which accepts an instream and reconstruct the Table from file
         Table(std::istream &, const CardFactory *);
-        //returns true when a player has won. The name of the player is returned by refrence (in the argument). The winning condition is that all cards from the deck must have been picked up and then the payer with the most coinds won
+        //returns true when a player has won. The name of the player is returned by reference (in the argument). The winning condition is that all cards from the deck must have been picked up and then the payer with the most coinds won
         bool win(std::string &);
-        //prings the top card of the palyer's hand (with argumetn false) or all of the player's hand (with arguments true)
+        //prings the top card of the player's hand (with argumetn false) or all of the player's hand (with arguments true)
         void printHand(bool);
         friend std::ostream &operator<<(std::ostream &, const Table &);
     };
