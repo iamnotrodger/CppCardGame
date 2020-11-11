@@ -14,7 +14,8 @@ namespace cards
         std::vector<Card *> deck;
 
     public:
-        //Constructor which acceopts an istream and reconstructs the deck from file
+        Deck();
+        //Constructor which accepts an istream and reconstructs the deck from file
         Deck(std::istream &, const CardFactory *);
         ~Deck();
         //Returns and rmoeves the top card from the deck
