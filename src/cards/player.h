@@ -2,6 +2,7 @@
 #include <vector>
 #include "cardFactory.h"
 #include "chain.h"
+#include "hand.h"
 
 namespace cards
 {
@@ -11,6 +12,7 @@ namespace cards
         std::string name;
         int coins;
         int numChain;
+        Hand hand;
         std::vector<Chain_Base *> chains;
 
     public:
@@ -26,7 +28,7 @@ namespace cards
         {
             return coins;
         }
-        //Add anubmer of coins
+        //Add a number of coins
         Player &operator+=(int);
         //returns either 2 or 3
         int getMaxNumChains();
@@ -34,11 +36,11 @@ namespace cards
         Chain_Base &operator[](int i);
         //adds an empty third chain to the player for three coins. The functions reduces the coint count for the player by two. if the player does not have enough coins then an exception NotEnoughCoins is thrown
         void buyThirdChain();
-        //prints the top card of the player's hand (argument false) or all of the plaeyr's hand (with argument true) to the supplied ostream
+        //prints the top card of the player's hand (argument false) or all of the player's hand (with argument true) to the supplied ostream
         friend std::ostream &operator<<(std::ostream &, const Player &);
 
-    protected:
         void printHand(std::ostream &, bool);
+        void printHand(bool);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)

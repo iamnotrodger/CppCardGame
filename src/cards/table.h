@@ -18,7 +18,6 @@ namespace cards
         bool playerOneTurn;
 
     public:
-        Table();
         Table(std::string, std::string);
         //construct which accepts an instream and reconstruct the Table from file
         Table(std::istream &, const CardFactory *);
