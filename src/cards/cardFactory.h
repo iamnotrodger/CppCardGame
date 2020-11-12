@@ -13,6 +13,7 @@ namespace cards
 
     private:
         static CardFactory *const cardFactory;
+        std::vector<Card *> deckList;
         CardFactory();
     };
-} // namespace cards
+} 

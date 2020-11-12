@@ -15,7 +15,8 @@ namespace cards
         int size = deck.size();
 
     public:
-        Deck();
+        Deck(std::vector<Card *>);
+        Deck(const CardFactory *);
         //Constructor which accepts an istream and reconstructs the deck from file
         Deck(std::istream &, const CardFactory *);
         ~Deck();

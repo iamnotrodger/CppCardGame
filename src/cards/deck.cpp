@@ -14,65 +14,19 @@
 
 namespace cards
 {
-    Deck::Deck()
+    Deck::Deck(std::vector<Card *> deckVector)
     {
-
-        int i = 0;
-
-        for (i; i < 20; i++)
-        {
-            deck.push_back(new Blue());
-        }
-
-        for (i; i < 38; i++)
-        {
-            deck.push_back(new Chili());
-        }
-
-        for (i; i < 54; i++)
-        {
-            deck.push_back(new Stink());
-        }
-
-        for (i; i < 68; i++)
-        {
-            deck.push_back(new Green());
-        }
-
-        for (i; i < 80; i++)
-        {
-            deck.push_back(new Soy());
-        }
-
-        for (i; i < 90; i++)
-        {
-            deck.push_back(new Black());
-        }
-
-        for (i; i < 98; i++)
-        {
-            deck.push_back(new Red());
-        }
-
-        for (i; i < 104; i++)
-        {
-            deck.push_back(new Garden());
-        }
-
-        std::random_shuffle(deck.begin(), deck.end());
-
-        for (int j = 0; j < 5; j++)
-        {
-            std::cout << deck[j]->getName() << std::endl;
+        for (int i = 0; i < deckVector.size(); i++) {
+            deck.push_back(deckVector[i]);
         }
     }
 
+    // Deck::Deck(const CardFactory *) {
+    //     CardFactory();
+    // }
+
     Deck::~Deck()
     {
-        for (int i = 0; i < deck.size(); i++)
-        {
-            delete deck[i];
-        }
     }
 
     Card *Deck::draw()
