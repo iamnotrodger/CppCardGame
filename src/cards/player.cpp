@@ -42,9 +42,10 @@ namespace cards
 
         else
         {
+            std::cout << "Here" + hand.getSize() << std::endl;
             for (int i = 0; i < hand.getSize(); i++)
             {
-                std::cout << hand[i]->getName() << std::endl;
+                std::cout << hand[i]->getName() + "" << std::endl;
             }
         }
     }

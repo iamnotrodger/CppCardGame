@@ -57,11 +57,14 @@ namespace cards
         {
             deck.push_back(new Garden());
         }
+        auto randomize = std::default_random_engine {};
+        std::shuffle(deck.begin(), deck.end(),randomize);
 
-        for (int j = 0; j < 104; j++)
-        {
-            std::cout << deck[j]->getName() << std::endl;
-        }
+        // testing
+        // for (int j = 0; j < 104; j++)
+        // {
+        //     std::cout << deck[j]->getName() << std::endl;
+        // }
     }
 
     Deck::Deck(std::vector<Card *> deckVector)

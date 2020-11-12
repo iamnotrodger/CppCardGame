@@ -10,11 +10,12 @@ namespace cards
     Hand &Hand::operator+=(Card * card) {
         hand.push_back(card);
 
-        std::cout << "Match" << std::endl;
-        for (int i = 0; i < hand.size(); i++) {
-            std::cout << hand[i]->getName() << std::endl;
-        }
-        std::cout << "" << std::endl;
+        // testing
+        // std::cout << "Match" << std::endl;
+        // for (int i = 0; i < hand.size(); i++) {
+        //     std::cout << hand[i]->getName() << std::endl;
+        // }
+        // std::cout << "" << std::endl;
 
         return *this;
     }
@@ -44,7 +45,7 @@ namespace cards
         }
 
         Card * card = hand[index];
-        hand.erase(hand.begin()+index, hand.begin()+index+1);
+        // std::cout << "Card: " + card->getName() << std::endl;
         return card;
     }
 } 
