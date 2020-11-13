@@ -18,4 +18,28 @@ namespace cards
             return 0;
         };
     }
+
+    int Green::getCoinsPerCards(int cards)
+    {
+        if (cards >= 7)
+        {
+            return 4;
+        }
+        else if (cards >= 6)
+        {
+            return 3;
+        }
+        else if (cards >= 5)
+        {
+            return 2;
+        }
+        else if (cards >= 3)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 } // namespace cards

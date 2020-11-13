@@ -4,3 +4,4 @@ src/main*
 src/a.out
 src/*.exe
 src/test.cpp
+test/a.out
