@@ -3,9 +3,18 @@
 
 namespace cards
 {
+    Player::Player() {
+
+    }
+    
     Player &Player::operator+=(int addCoins)
     {
         coins += addCoins;
+        return *this;
+    }
+
+    Player &Player::operator+=(Card * card) {
+        hand += card;
         return *this;
     }
 
@@ -49,4 +58,4 @@ namespace cards
             }
         }
     }
-} // namespace cards
+} 

@@ -16,6 +16,7 @@ namespace cards
         std::vector<Chain_Base *> chains;
 
     public:
+        Player();
         //Constructor
         Player(std::string &n) : name(n), coins(0){};
         //reconstruct player form file
@@ -41,6 +42,9 @@ namespace cards
 
         void printHand(std::ostream &, bool);
         void printHand(bool);
+
+        // helper functions
+        Player &operator+=(Card *);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)

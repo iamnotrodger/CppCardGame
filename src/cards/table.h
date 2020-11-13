@@ -27,6 +27,13 @@ namespace cards
         //prings the top card of the player's hand (with argumetn false) or all of the player's hand (with arguments true)
         void printHand(bool);
         friend std::ostream &operator<<(std::ostream &, const Table &);
+
+        // helper methods 
+        void changeTurn();
+        bool getTurn() {return playerOneTurn;}
+        Player getPlayerOne() {return playerOne;}
+        Player getPlayerTwo() {return playerTwo;}
+        Table &add(Card *, bool);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)

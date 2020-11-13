@@ -1,7 +1,13 @@
 #include "table.h"
+#include "player.h"
 
 namespace cards
 {
+    Table::Table(std::string s1, std::string s2) {
+        playerOne = Player(s1);
+        playerTwo = Player(s2);
+    }
+
     bool Table::win(std::string & winner) {
         if (!deck.isEmpty()) {
             return false;
@@ -17,7 +23,6 @@ namespace cards
         }
     }
 
-    // Have to complete player in order to work
     void Table::printHand(bool show) {
         if (playerOneTurn) {
             playerOne.printHand(show);
@@ -29,4 +34,23 @@ namespace cards
         
         
     }
+
+    void Table::changeTurn() {
+        playerOneTurn = !playerOneTurn;
+    }
+
+    Table &Table::add(Card * card, bool playerOneHand) {
+        // true represents playerOne
+        if (playerOneHand) {
+            playerOne += card;
+        }
+
+        // false represents playerTwo
+        else if (!playerOneHand) {
+            playerTwo += card;
+        }
+
+        return *this;
+    }
+
 } 
