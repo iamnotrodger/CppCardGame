@@ -8,6 +8,7 @@
 #include "../src/cards/black.h"
 #include "../src/cards/red.h"
 #include "../src/cards/garden.h"
+#include "../src/cards/chain.h"
 
 using namespace cards;
 using namespace std;
