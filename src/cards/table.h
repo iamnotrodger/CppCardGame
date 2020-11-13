@@ -34,6 +34,7 @@ namespace cards
         Player getPlayerOne() {return playerOne;}
         Player getPlayerTwo() {return playerTwo;}
         Table &add(Card *, bool);
+        Table &discardCard(int, bool);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)

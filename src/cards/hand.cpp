@@ -2,6 +2,7 @@
 
 namespace cards
 {
+    // constructor 
     Hand::Hand() {
 
     }
@@ -20,6 +21,7 @@ namespace cards
         return *this;
     }
 
+    // returns and removes the top card
     Card *Hand::play() {
         if (hand.size() == 0) {
             return NULL;
@@ -30,6 +32,7 @@ namespace cards
         return top;
     }
 
+    // returns the top card
     Card *Hand::top() {
         if (hand.size() == 0) {
             return NULL;
@@ -39,6 +42,7 @@ namespace cards
         return top;
     }
 
+    // allows indexing for the hand
     Card *Hand::operator[](int index) {
         if (hand.size() == 0) {
             return NULL;
@@ -47,5 +51,15 @@ namespace cards
         Card * card = hand[index];
         // std::cout << "Card: " + card->getName() << std::endl;
         return card;
+    }
+
+    // deletes a card 
+    Hand &Hand::deleteCard(int index) {
+        if (hand.size() == 0) {
+            return *this;
+        }
+
+        hand.erase(hand.begin() + index, hand.begin() + index + 1);
+        return *this;
     }
 } 

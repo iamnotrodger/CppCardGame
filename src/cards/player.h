@@ -45,6 +45,7 @@ namespace cards
 
         // helper functions
         Player &operator+=(Card *);
+        Player &deleteCard(int);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)

@@ -32,7 +32,9 @@ cards::Table table = cards::Table(name1,name2);
 
 // save 
 bool pause = false;
-bool p1 = true;
+
+// random
+bool removeTop = true;
 
 int main()
 {
@@ -59,6 +61,7 @@ void setup() {
     // cards::Player play1 = cards::Player(name1);
     // cards::Player play2 = cards::Player(name2);
 
+    // adds 5 cards to each player's hand
     for (int i = 0; i < 5; i++) {
         table.add(deck.draw(),true);
     }
@@ -84,6 +87,7 @@ void setup() {
     // }
 }
 
+// main state of the game
 void loop() {
     // while (!deck.isEmpty()) {
 
@@ -92,7 +96,46 @@ void loop() {
         //     save()
         // }
 
+        cout << "Player " << endl;
         table.printHand(true);
+        table.add(deck.draw(),table.getTurn());
+        
+        // trading phase
+        if (trade.numCards() != 0) {
+            // Give option to take cards
+        }
+
+        // adding top card phase
+        while (removeTop) {
+            cout << "Your top card is being added to your chains." << endl;
+
+            // Check if added card is the same type of the chain
+
+            // Check if chains are full
+
+            // Sell chains if needed
+
+            removeTop = false;
+        }
+
+        // discard phase
+        string discard;
+        int discard_index;
+
+        cout << "Would you like to discard a card? " << endl;
+        cin >> discard;
+
+        if (discard == "yes") {
+            table.printHand(true);
+            cout << "Which card would you like to discard (choose index): " << endl;
+            cin >> discard_index;
+
+            table.discardCard(discard_index,table.getTurn());
+
+            cout << "Here is your hand after discarding:" << endl;
+            table.printHand(true);
+        }
+            
 
     // }
 }

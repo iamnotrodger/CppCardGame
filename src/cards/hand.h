@@ -25,6 +25,9 @@ namespace cards
         int getSize() {return hand.size();}
         //returns and removes the card from the players hands at the given index
         friend std::ostream &operator<<(std::ostream &, const Hand &);
+
+        // helper functions 
+        Hand &deleteCard(int);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Hand &h)
