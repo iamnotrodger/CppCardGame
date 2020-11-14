@@ -14,7 +14,6 @@ void loop();
 
 // player 1 and player 2
 string name1 = "Patrick";
-string name3 = "Patrick";
 string name2 = "Rodger";
 // cards::Player play1 = cards::Player(name1);
 // cards::Player play2 = cards::Player(name2);

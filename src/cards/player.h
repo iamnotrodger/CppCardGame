@@ -44,8 +44,9 @@ namespace cards
         void printHand(bool);
 
         // helper functions
-        Player &operator+=(Card *);
-        Player &deleteCard(int);
+        void addCard(Card *);
+        void deleteCard(int);
+        void addCardToChain(Card *);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)
