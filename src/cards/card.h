@@ -10,6 +10,10 @@ namespace cards
         virtual std::string getName() = 0;
         friend std::ostream &operator<<(std::ostream &os, const Card &card);
 
+        //helper function
+        //returns the number of coins per number of cards
+        virtual int getCoinsPerCards(int) = 0;
+
     protected:
         virtual void print(std::ostream &out) const = 0;
     };

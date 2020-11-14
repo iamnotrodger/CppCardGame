@@ -18,4 +18,28 @@ namespace cards
             return 0;
         };
     }
+
+    int Black::getCoinsPerCards(int cards)
+    {
+        if (cards >= 6)
+        {
+            return 4;
+        }
+        else if (cards >= 5)
+        {
+            return 3;
+        }
+        else if (cards >= 4)
+        {
+            return 2;
+        }
+        else if (cards >= 2)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 } // namespace cards

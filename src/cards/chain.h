@@ -45,11 +45,7 @@ namespace cards
     template <class T>
     Chain<T>::~Chain()
     {
-        for (int i = 0; i < chain.size(); i++)
-        {
-            delete chain[i];
-        }
-        chain.clear();
+        // delete chain;
     }
 
     template <class T>
@@ -67,7 +63,15 @@ namespace cards
     int Chain<T>::sell()
     {
         int size = chain.size();
-        return 1;
+        if (size > 0)
+        {
+            Card *card = chain.back();
+            return card->getCoinsPerCards(size);
+        }
+        else
+        {
+            return 0;
+        }
     }
 
 } // namespace cards

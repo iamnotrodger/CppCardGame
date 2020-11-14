@@ -12,7 +12,6 @@ namespace cards
     {
     private:
         std::vector<Card *> deck;
-        int size = deck.size();
 
     public:
         Deck();
@@ -23,7 +22,7 @@ namespace cards
         ~Deck();
         //Returns and rmoeves the top card from the deck
         Card *draw();
-        bool isEmpty() {return size;}
+        bool isEmpty() { return deck.empty(); }
         friend std::ostream &operator<<(std::ostream &os, const Deck &d);
     };
 

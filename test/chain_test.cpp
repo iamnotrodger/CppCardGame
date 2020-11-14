@@ -1,9 +1,7 @@
 #include <iostream>
 #include "../src/cards/chain.h"
-#include "../src/cards/card.h"
 #include "../src/cards/chili.h"
 #include "../src/cards/blue.h"
-#include "../src/cards/illegalType.h"
 
 using namespace std;
 using namespace cards;
@@ -37,4 +35,6 @@ int main()
     }
 
     cout << chain;
+
+    cout << chain.sell() << endl;
 }

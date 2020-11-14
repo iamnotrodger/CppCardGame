@@ -11,6 +11,7 @@ namespace cards
         {
             return "garden";
         }
+        int getCoinsPerCards(int);
 
     protected:
         void print(std::ostream &out) const

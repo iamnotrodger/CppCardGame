@@ -12,6 +12,7 @@ namespace cards
         {
             return "Blue";
         }
+        int getCoinsPerCards(int);
 
     protected:
         void print(std::ostream &out) const
