@@ -66,6 +66,8 @@ void setup() {
         table.add(deck.draw(),true);
     }
 
+    //asdfasdf
+
     for (int i = 0; i < 5; i++) {
         table.add(deck.draw(),false);
     }
