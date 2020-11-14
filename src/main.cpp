@@ -24,17 +24,14 @@ string name2 = "Rodger";
 
 // deck,discard pile, and trade area
 cards::Deck deck = cards::Deck();
-cards::DiscardPile discard = cards::DiscardPile();
-cards::TradeArea trade = cards::TradeArea();
+// cards::DiscardPile discard = cards::DiscardPile();
+// cards::TradeArea trade = cards::TradeArea();
 
 // table
 cards::Table table = cards::Table(name1, name2);
 
 // save
 bool pause = false;
-
-// random
-bool removeTop = true;
 
 int main()
 {
@@ -93,6 +90,10 @@ void setup()
 // main state of the game
 void loop()
 {
+    // random
+    bool removeTop = true;
+    bool tradeMatch = false;
+
     // while (!deck.isEmpty()) {
 
     // save functionality
@@ -100,12 +101,11 @@ void loop()
     //     save()
     // }
 
-    cout << "Player " << endl;
+    cout << "Here is your starting hand: " << endl;
     table.printHand(true);
-    table.add(deck.draw(), table.getTurn());
 
     // trading phase
-    if (trade.numCards() != 0)
+    if (table.getTradeArea() != 0)
     {
         // Give option to take cards
     }
@@ -128,6 +128,10 @@ void loop()
     string discard;
     int discard_index;
 
+    cout << "Here is your hand: " << endl;
+    table.printHand(true);
+    cout << "" << endl;
+
     cout << "Would you like to discard a card? " << endl;
     cin >> discard;
 
@@ -141,7 +145,35 @@ void loop()
 
         cout << "Here is your hand after discarding:" << endl;
         table.printHand(true);
+        cout << "" << endl;
     }
+
+
+    // trade area phase 
+    cout << "Cards are being added to the trade table" << endl;
+    for (int i = 0; i < 3; i++) {
+        table.add(deck.draw());
+        cout << "Added" << endl;
+    }
+
+    cout << "Before trade phase" << endl;
+    table.tradePhase();
+
+    // add cards to chain, optional for player
+    cout << "Here is the tradeArea: " << endl;
+    // print trade area and optional collection!!!
+
+
+    // draw phase
+    for (int i = 0; i < 2; i++) {
+        table.add(deck.draw(), table.getTurn());
+    }
+
+    cout << "Here is your hand at the end of the round:" << endl;
+    table.printHand(true);
+
+    // this player's turn is over
+    table.changeTurn();
 
     // }
 }

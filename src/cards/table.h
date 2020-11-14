@@ -34,7 +34,13 @@ namespace cards
         Player getPlayerOne() { return playerOne; }
         Player getPlayerTwo() { return playerTwo; }
         void add(Card *, bool);
+        void add(Card *);
+        int getTradeArea();
+        void tradePhase();
         void discardCard(int, bool);
+
+        // testing only
+        TradeArea getTrade() {return trade;}
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)
