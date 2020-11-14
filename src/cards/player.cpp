@@ -4,10 +4,10 @@
 namespace cards
 {
     // constructor
-    Player::Player() {
-
+    Player::Player()
+    {
     }
-    
+
     // adds coins to a player's total
     Player &Player::operator+=(int addCoins)
     {
@@ -16,9 +16,9 @@ namespace cards
     }
 
     // adds a card to a player's hand
-    Player &Player::operator+=(Card * card) {
+    void Player::addCard(Card *card)
+    {
         hand += card;
-        return *this;
     }
 
     // returns the number of chains a player has
@@ -33,7 +33,7 @@ namespace cards
         return *chains[i];
     }
 
-    // allows the player to buy a third chain slot 
+    // allows the player to buy a third chain slot
     void Player::buyThirdChain()
     {
         if (coins < 3)
@@ -66,9 +66,9 @@ namespace cards
         }
     }
 
-    // deletes a card from a player's hand 
-    Player &Player::deleteCard(int index) {
+    // deletes a card from a player's hand
+    void Player::deleteCard(int index)
+    {
         hand.deleteCard(index);
-        return *this;
     }
-} 
+} // namespace cards

@@ -28,13 +28,13 @@ namespace cards
         void printHand(bool);
         friend std::ostream &operator<<(std::ostream &, const Table &);
 
-        // helper methods 
+        // helper methods
         void changeTurn();
-        bool getTurn() {return playerOneTurn;}
-        Player getPlayerOne() {return playerOne;}
-        Player getPlayerTwo() {return playerTwo;}
-        Table &add(Card *, bool);
-        Table &discardCard(int, bool);
+        bool getTurn() { return playerOneTurn; }
+        Player getPlayerOne() { return playerOne; }
+        Player getPlayerTwo() { return playerTwo; }
+        void add(Card *, bool);
+        void discardCard(int, bool);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)
