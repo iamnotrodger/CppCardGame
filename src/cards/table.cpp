@@ -66,6 +66,12 @@ namespace cards
         }
     }
 
+    // adds a card to the trade area
+    void Table::add(Card *card)
+    {
+        trade += card;
+    }
+
     // removes a card from a player's hand
     void Table::discardCard(int index, bool playerOneHand)
     {
@@ -79,6 +85,20 @@ namespace cards
         else if (!playerOneHand)
         {
             playerTwo.deleteCard(index);
+        }
+    }
+
+    // returns the size of trade area
+    int Table::getTradeArea() {
+        return trade.numCards();
+    }
+
+    // simulates trade-discard interaction part of trade area phase
+    void Table::tradePhase() {
+
+        // runs as long as top of discard pile matches a suit in the trade phase
+        while (discard.top() != NULL && trade.legal(discard.top())) {
+            trade += discard.pickUp();
         }
     }
 
