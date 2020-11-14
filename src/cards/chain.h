@@ -45,7 +45,6 @@ namespace cards
     template <class T>
     Chain<T>::~Chain()
     {
-        // delete chain;
     }
 
     template <class T>

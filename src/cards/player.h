@@ -9,11 +9,14 @@ namespace cards
     class Player
     {
     private:
+        //variables
         std::string name;
         int coins;
-        int numChain;
         Hand hand;
         std::vector<Chain_Base *> chains;
+
+        //private member functions
+        void createChain(Card *);
 
     public:
         Player();

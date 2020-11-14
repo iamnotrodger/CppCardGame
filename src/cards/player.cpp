@@ -1,4 +1,13 @@
+#include <string>
 #include "player.h"
+#include "blue.h"
+#include "chili.h"
+#include "stink.h"
+#include "green.h"
+#include "soy.h"
+#include "black.h"
+#include "red.h"
+#include "garden.h"
 #include "notEnougCoins.h"
 
 namespace cards
@@ -15,16 +24,10 @@ namespace cards
         return *this;
     }
 
-    // adds a card to a player's hand
-    void Player::addCard(Card *card)
-    {
-        hand += card;
-    }
-
     // returns the number of chains a player has
     int Player::getMaxNumChains()
     {
-        return numChain;
+        return chains.size();
     }
 
     // returns a particular chain
@@ -41,10 +44,9 @@ namespace cards
             throw NotEnoughCoins();
         }
 
-        if (numChain != 3)
+        if (chains.size() != 3)
         {
             coins -= 3;
-            numChain = 3;
         }
     }
 
@@ -66,9 +68,77 @@ namespace cards
         }
     }
 
+    // adds a card to a player's hand
+    void Player::addCard(Card *card)
+    {
+        hand += card;
+    }
+
     // deletes a card from a player's hand
     void Player::deleteCard(int index)
     {
         hand.deleteCard(index);
+    }
+
+    // Adds card into the vector<Chain_Base> and creates a new Chain if the type of card does not exist
+    void Player::addCardToChain(Card *card)
+    {
+        //TODO: Select which chain to add on
+        //TODO: Throw and error if the availalbe chains is already occuppied
+        createChain(card);
+    }
+
+    //
+    void Player::createChain(Card *card)
+    {
+        std::string type = typeid(*(card)).name();
+        if (type == typeid(Blue).name())
+        {
+            Chain<Blue> *chain = new Chain<Blue>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else if (type == typeid(Chili).name())
+        {
+            Chain<Chili> *chain = new Chain<Chili>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else if (type == typeid(Stink).name())
+        {
+            Chain<Stink> *chain = new Chain<Stink>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else if (type == typeid(Green).name())
+        {
+            Chain<Green> *chain = new Chain<Green>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else if (type == typeid(Soy).name())
+        {
+            Chain<Soy> *chain = new Chain<Soy>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else if (type == typeid(Black).name())
+        {
+            Chain<Black> *chain = new Chain<Black>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else if (type == typeid(Red).name())
+        {
+            Chain<Red> *chain = new Chain<Red>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
+        else
+        {
+            Chain<Garden> *chain = new Chain<Garden>();
+            *(chain) += card;
+            chains.push_back(chain);
+        }
     }
 } // namespace cards

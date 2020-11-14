@@ -8,7 +8,6 @@ using namespace cards;
 
 int main()
 {
-    cout << "Hello World" << endl;
     Chili *c = new Chili();
     Chili *c2 = new Chili();
     Chili *c3 = new Chili();
@@ -38,3 +37,5 @@ int main()
 
     cout << chain.sell() << endl;
 }
+
+//g++ chain_test.cpp ../src/cards/chili.cpp ../src/cards/blue.cpp
