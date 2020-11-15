@@ -38,10 +38,13 @@ namespace cards
         int getTradeArea();
         void tradePhase();
         void discardCard(int, bool);
+        Card * tradeCard(std::string bean);
+        Card * draw() {return deck.draw();}
+        bool isEmpty() {return deck.isEmpty();}
 
         // testing only
         TradeArea getTrade() {return trade;}
-        Card * tradeCard(std::string bean);
+        
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)
