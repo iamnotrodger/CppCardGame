@@ -90,6 +90,7 @@ namespace cards
 
     // returns the size of trade area
     int Table::getTradeArea() {
+        trade.show();
         return trade.numCards();
     }
 
@@ -101,5 +102,10 @@ namespace cards
             trade += discard.pickUp();
         }
     }
+
+    Card * Table::tradeCard(std::string bean) {
+        return trade.trade(bean);
+    }
+    
 
 } // namespace cards

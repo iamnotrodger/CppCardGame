@@ -41,6 +41,7 @@ namespace cards
 
         // testing only
         TradeArea getTrade() {return trade;}
+        Card * tradeCard(std::string bean);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)

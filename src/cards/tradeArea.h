@@ -27,6 +27,9 @@ namespace cards
             return cards.size();
         }
         friend std::ostream &operator<<(std::ostream &, const TradeArea &);
+
+        // helper functions 
+        void show();
     };
 
     inline std::ostream &operator<<(std::ostream &os, const TradeArea &t)

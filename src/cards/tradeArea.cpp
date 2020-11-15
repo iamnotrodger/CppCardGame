@@ -40,4 +40,11 @@ namespace cards
             }
         }
     }
+
+    void TradeArea::show() {
+        std::cout << "Trade Area: " << std::endl;
+        for (std::list<Card *>::iterator i = cards.begin(); i != cards.end(); i++) {
+            std::cout << (*i)->getName() << std::endl;
+        }
+    }
 } 
