@@ -32,4 +32,9 @@ int main()
     cout << *(black) << endl;
     cout << *(red) << endl;
     cout << *(garden) << endl;
+
+    cout << typeid(*(blue)).name() << endl;
+    cout << typeid(Blue).name() << endl;
 }
+
+//g++ cards_test.cpp ../src/cards/blue.cpp ../src/cards/chili.cpp ../src/cards/stink.cpp ../src/cards/green.cpp  ../src/cards/soy.cpp ../src/cards/black.cpp ../src/cards/red.cpp ../src/cards/garden.cpp
