@@ -54,24 +54,23 @@ namespace cards
     // prints the player's hand
     void Player::printHand(bool show)
     {
-        //if (!show)
-        //{
-            //std::cout << hand.top()->getName() << std::endl;
-        //}
-
-        //else
-        //{
-            //std::cout << "Here" + hand.getSize() << std::endl;
-            //for (int i = 0; i < hand.getSize(); i++)
-            //{
-                //std::cout << hand[i]->getName() + "" << std::endl;
-            //}
-        //}
-        if(!show) {
-            std::cout << hand[0] << std::endl;
-        } else {
-            std::cout << hand << std::endl;
+        if (!show)
+        {
+            std::cout << hand.top()->getName() << std::endl;
         }
+
+        else
+        {
+            for (int i = 0; i < hand.getSize(); i++)
+            {
+                std::cout << hand[i]->getName() + "" << std::endl;
+            }
+        }
+        // if(!show) {
+        //     std::cout << hand[0] << std::endl;
+        // } else {
+        //     std::cout << hand << std::endl;
+        // }
     }
 
     // adds a card to a player's hand
