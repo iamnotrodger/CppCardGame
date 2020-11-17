@@ -55,8 +55,7 @@ namespace cards
     void Player::printHand(bool show)
     {
         //if (!show)
-        //{
-            //std::cout << hand.top()->getName() << std::endl;
+        //{ std::cout << hand.top()->getName() << std::endl;
         //}
 
         //else
@@ -68,7 +67,7 @@ namespace cards
             //}
         //}
         if(!show) {
-            std::cout << hand[0] << std::endl;
+            std::cout << (*hand)[0] << std::endl;
         } else {
             std::cout << hand << std::endl;
         }
@@ -77,7 +76,7 @@ namespace cards
     // adds a card to a player's hand
     void Player::addCard(Card *card)
     {
-        hand += card;
+        *hand += card;
     }
 
     // deletes a card from a player's hand

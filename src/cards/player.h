@@ -12,7 +12,7 @@ namespace cards
         //variables
         std::string name;
         int coins;
-        Hand hand;
+        Hand *hand;
         std::vector<Chain_Base *> chains;
 
         //private member functions
