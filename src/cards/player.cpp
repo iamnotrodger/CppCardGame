@@ -82,7 +82,7 @@ namespace cards
     // deletes a card from a player's hand
     Card * Player::deleteCard(int index)
     {
-        return hand.deleteCard(index);
+        return hand->deleteCard(index);
     }
 
     // Adds card into the vector<Chain_Base> and creates a new Chain if the type of card does not exist
