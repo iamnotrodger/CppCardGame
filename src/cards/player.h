@@ -21,7 +21,7 @@ namespace cards
     public:
         //Constructor
         Player();
-        //Deconstructor 
+        //Deconstructor
         ~Player();
         Player(std::string &n) : name(n), coins(0){};
         //reconstruct player form file
@@ -50,7 +50,7 @@ namespace cards
 
         // helper functions
         void addCard(Card *);
-        Card * deleteCard(int);
+        Card *deleteCard(int);
         void addCardToChain(Card *);
     };
 
@@ -61,6 +61,8 @@ namespace cards
         {
             os << p.chains[i];
         }
+        os << std::endl;
+        os << p.hand;
 
         return os;
     };

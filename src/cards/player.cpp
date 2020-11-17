@@ -20,7 +20,7 @@ namespace cards
     }
 
     //Deconstructor
-    Player::~Player() 
+    Player::~Player()
     {
         delete hand;
     }
@@ -61,10 +61,13 @@ namespace cards
     // prints the player's hand
     void Player::printHand(bool show)
     {
-        if(!show) {
-            std::cout << (*hand)[0] << std::endl;
-        } else {
-            std::cout << hand << std::endl;
+        if (!show)
+        {
+            std::cout << (*(*hand)[0]) << std::endl;
+        }
+        else
+        {
+            std::cout << (*hand) << std::endl;
         }
     }
 
@@ -72,11 +75,10 @@ namespace cards
     void Player::addCard(Card *card)
     {
         *hand += card;
-        cout << hand;
     }
 
     // deletes a card from a player's hand
-    Card * Player::deleteCard(int index)
+    Card *Player::deleteCard(int index)
     {
         return hand->deleteCard(index);
     }
@@ -88,10 +90,10 @@ namespace cards
         //TODO: Throw and error if the availalbe chains is already occuppied
         bool flag = false;
         //for(int i = 0; i < chains.size(); i++) {
-            //try {
-            //} catch() {
-                //continue;
-            //}
+        //try {
+        //} catch() {
+        //continue;
+        //}
         //}
         createChain(card);
     }
