@@ -3,8 +3,12 @@
 namespace cards
 {
     // constructor 
-    Hand::Hand() {
+    Hand::Hand() 
+    {
+    }
 
+    Hand::~Hand() 
+    {
     }
 
     // REAR OF THE HAND IS THE END IF THE LIST
