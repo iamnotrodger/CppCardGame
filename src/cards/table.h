@@ -44,6 +44,7 @@ namespace cards
 
         // testing only
         TradeArea getTrade() {return trade;}
+        void addCardToChain(Card *card);
         
     };
 

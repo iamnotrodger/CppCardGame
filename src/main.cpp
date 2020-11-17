@@ -95,7 +95,7 @@ void loop()
     // }
 
         cout << "Here is your starting hand: " << endl;
-        table.printHand(true);
+        table.printHand(table.getTurn());
 
         // trading phase
         if (table.getTradeArea() != 0)
@@ -110,7 +110,7 @@ void loop()
                     cin >> bean;
 
                     // add cards to chain if possible
-                    // table.add(table.tradeCard(bean), true);
+                    table.addCardToChain(table.tradeCard(bean));
 
                     cout << "Would you like to take any cards from the trading table? " << endl;
                     cin >> trading;
@@ -139,7 +139,7 @@ void loop()
         int discard_index;
 
         cout << "Here is your hand: " << endl;
-        table.printHand(true);
+        table.printHand(table.getTurn());
         cout << "" << endl;
 
         cout << "Would you like to discard a card? " << endl;
@@ -147,14 +147,14 @@ void loop()
 
         if (discard == "yes")
         {
-            table.printHand(true);
+            table.printHand(table.getTurn());
             cout << "Which card would you like to discard (choose index): " << endl;
             cin >> discard_index;
 
             table.discardCard(discard_index, table.getTurn());
 
             cout << "Here is your hand after discarding:" << endl;
-            table.printHand(true);
+            table.printHand(table.getTurn());
             cout << "" << endl;
         }
 
@@ -195,11 +195,11 @@ void loop()
 
         // draw phase
         for (int i = 0; i < 2; i++) {
-            table.add(table.draw(), true);
+            table.add(table.draw(), table.getTurn());
         }
 
         cout << "Here is your hand at the end of the round:" << endl;
-        table.printHand(true);
+        table.printHand(table.getTurn());
 
         // this player's turn is over
         // table.changeTurn();

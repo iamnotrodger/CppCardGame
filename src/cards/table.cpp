@@ -109,6 +109,19 @@ namespace cards
     Card * Table::tradeCard(std::string bean) {
         return trade.trade(bean);
     }
+
+
+    void Table::addCardToChain(Card *card) {
+        if (playerOneTurn)
+        {
+            playerOne.addCardToChain(card);
+        }
+
+        else
+        {
+            playerTwo.addCardToChain(card);
+        }
+    }
     
 
 } // namespace cards
