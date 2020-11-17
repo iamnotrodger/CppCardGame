@@ -16,6 +16,13 @@ namespace cards
     // constructor
     Player::Player()
     {
+        hand = new Hand();
+    }
+
+    //Deconstructor
+    Player::~Player()
+    {
+        delete hand;
     }
 
     // adds coins to a player's total
@@ -56,33 +63,24 @@ namespace cards
     {
         if (!show)
         {
-            std::cout << hand.top()->getName() << std::endl;
+            std::cout << (*(*hand)[0]) << std::endl;
         }
-
         else
         {
-            for (int i = 0; i < hand.getSize(); i++)
-            {
-                std::cout << hand[i]->getName() + "" << std::endl;
-            }
+            std::cout << (*hand) << std::endl;
         }
-        // if(!show) {
-        //     std::cout << hand[0] << std::endl;
-        // } else {
-        //     std::cout << hand << std::endl;
-        // }
     }
 
     // adds a card to a player's hand
     void Player::addCard(Card *card)
     {
-        hand += card;
+        *hand += card;
     }
 
     // deletes a card from a player's hand
-    Card * Player::deleteCard(int index)
+    Card *Player::deleteCard(int index)
     {
-        return hand.deleteCard(index);
+        return hand->deleteCard(index);
     }
 
     // Adds card into the vector<Chain_Base> and creates a new Chain if the type of card does not exist
@@ -92,10 +90,10 @@ namespace cards
         //TODO: Throw and error if the availalbe chains is already occuppied
         bool flag = false;
         //for(int i = 0; i < chains.size(); i++) {
-            //try {
-            //} catch() {
-                //continue;
-            //}
+        //try {
+        //} catch() {
+        //continue;
+        //}
         //}
         createChain(card);
     }
