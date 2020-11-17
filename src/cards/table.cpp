@@ -91,6 +91,17 @@ namespace cards
         }
     }
 
+    // clears the TradeArea
+    void Table::clearTrade()
+    {
+        Card * card;
+        
+        for (int i = 0; i<trade.numCards(); i++) {
+            card = trade.trade(i);
+            discard += card;
+        }
+    }
+
     // returns the size of trade area
     int Table::getTradeArea() {
         trade.show();

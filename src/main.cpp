@@ -118,6 +118,8 @@ void loop()
                 
                 // remove the rest of the cards into the discard pile
             }
+
+            table.clearTrade();
         }
 
         // adding top card phase
@@ -183,14 +185,17 @@ void loop()
                 cin >> bean;
 
                 // add cards to chain if possible
-                // table.add(table.tradeCard(bean), true);
+                table.addCardToChain(table.tradeCard(bean));
 
                 cout << "Would you like to take any cards from the trading table? " << endl;
                 cin >> trading;
             }
             
+            
             // remove the rest of the cards into the discard pile
         }
+
+        table.clearTrade();
 
 
         // draw phase
