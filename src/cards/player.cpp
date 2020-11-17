@@ -9,6 +9,7 @@
 #include "red.h"
 #include "garden.h"
 #include "notEnougCoins.h"
+#include "illegalType.h"
 
 namespace cards
 {
@@ -53,18 +54,23 @@ namespace cards
     // prints the player's hand
     void Player::printHand(bool show)
     {
-        if (!show)
-        {
-            std::cout << hand.top()->getName() << std::endl;
-        }
+        //if (!show)
+        //{
+            //std::cout << hand.top()->getName() << std::endl;
+        //}
 
-        else
-        {
-            std::cout << "Here" + hand.getSize() << std::endl;
-            for (int i = 0; i < hand.getSize(); i++)
-            {
-                std::cout << hand[i]->getName() + "" << std::endl;
-            }
+        //else
+        //{
+            //std::cout << "Here" + hand.getSize() << std::endl;
+            //for (int i = 0; i < hand.getSize(); i++)
+            //{
+                //std::cout << hand[i]->getName() + "" << std::endl;
+            //}
+        //}
+        if(!show) {
+            std::cout << hand[0] << std::endl;
+        } else {
+            std::cout << hand << std::endl;
         }
     }
 
@@ -85,6 +91,13 @@ namespace cards
     {
         //TODO: Select which chain to add on
         //TODO: Throw and error if the availalbe chains is already occuppied
+        bool flag = false;
+        //for(int i = 0; i < chains.size(); i++) {
+            //try {
+            //} catch() {
+                //continue;
+            //}
+        //}
         createChain(card);
     }
 
