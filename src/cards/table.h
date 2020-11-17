@@ -15,7 +15,7 @@ namespace cards
         Deck deck;
         DiscardPile discard;
         TradeArea trade;
-        bool playerOneTurn;
+        bool playerOneTurn = true;
 
     public:
         Table();

@@ -12,11 +12,11 @@ namespace cards
         hand.push_back(card);
 
         // testing
-        // std::cout << "Match" << std::endl;
-        // for (int i = 0; i < hand.size(); i++) {
-        //     std::cout << hand[i]->getName() << std::endl;
-        // }
-        // std::cout << "" << std::endl;
+        std::cout << "Match" << std::endl;
+        for (int i = 0; i < hand.size(); i++) {
+            std::cout << hand[i]->getName() << std::endl;
+        }
+        std::cout << "" << std::endl;
 
         return *this;
     }
@@ -54,12 +54,17 @@ namespace cards
     }
 
     // deletes a card 
-    Hand &Hand::deleteCard(int index) {
+    Card *Hand::deleteCard(int index) {
         if (hand.size() == 0) {
-            return *this;
+            return NULL;
         }
 
+        Card * card = hand[index];
         hand.erase(hand.begin() + index, hand.begin() + index + 1);
-        return *this;
+
+        for (int i = 0; i < hand.size(); i++) {
+            std::cout << hand[i]->getName() << std::endl;
+        }
+        return card;
     }
 } 

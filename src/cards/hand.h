@@ -27,7 +27,7 @@ namespace cards
         friend std::ostream &operator<<(std::ostream &, const Hand &);
 
         // helper functions 
-        Hand &deleteCard(int);
+        Card * deleteCard(int);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Hand &h)

@@ -4,8 +4,8 @@
 #include "cards/player.h"
 #include "cards/deck.h"
 #include "cards/hand.h"
+#include "cards/card.h"
 #include "cards/discardpile.h"
-// #include "cards/player.h"
 using namespace std;
 
 // functions
@@ -15,17 +15,6 @@ void loop();
 // player 1 and player 2
 string name1 = "Patrick";
 string name2 = "Rodger";
-// cards::Player play1 = cards::Player(name1);
-// cards::Player play2 = cards::Player(name2);
-
-// player hands
-// cards::Hand hand1 = cards::Hand();
-// cards::Hand hand2 = cards::Hand();
-
-// deck,discard pile, and trade area
-// cards::Deck deck = cards::Deck();
-// cards::DiscardPile discard = cards::DiscardPile();
-// cards::TradeArea trade = cards::TradeArea();
 
 // table
 cards::Table table = cards::Table(name1, name2);
@@ -46,6 +35,18 @@ void setup()
     string name2;
 
     cout << "Welcome to our C++ project!" << endl;
+
+    // adds 5 cards to each player's hand
+    for (int i = 0; i < 5; i++)
+    {
+        table.add(table.draw(), true);
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        table.add(table.draw(), false);
+    }
+
     // cout << "What is Player 1's name? " << endl;
     // cin >> name1;
 
@@ -58,17 +59,6 @@ void setup()
 
     // cards::Player play1 = cards::Player(name1);
     // cards::Player play2 = cards::Player(name2);
-
-    // adds 5 cards to each player's hand
-    for (int i = 0; i < 5; i++)
-    {
-        table.add(table.draw(), true);
-    }
-
-    for (int i = 0; i < 5; i++)
-    {
-        table.add(table.draw(), false);
-    }
 
     // testing
     // cout << "Each player starts with 5 cards: " << endl;
@@ -90,6 +80,7 @@ void setup()
 // main state of the game
 void loop()
 {
+
     while (!table.isEmpty()) {
 
         // random
@@ -204,15 +195,16 @@ void loop()
 
         // draw phase
         for (int i = 0; i < 2; i++) {
-            table.add(table.draw(), table.getTurn());
+            table.add(table.draw(), true);
         }
 
         cout << "Here is your hand at the end of the round:" << endl;
         table.printHand(true);
 
         // this player's turn is over
-        table.changeTurn();
-        cout << "" << endl;
+        // table.changeTurn();
+        cout << "Ready to continue?" << endl;
+        cin >> trading;
 
     }
 }

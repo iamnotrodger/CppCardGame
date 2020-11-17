@@ -75,16 +75,19 @@ namespace cards
     // removes a card from a player's hand
     void Table::discardCard(int index, bool playerOneHand)
     {
+        Card * card;
         // true represents playerOne
         if (playerOneHand)
         {
-            playerOne.deleteCard(index);
+            card = playerOne.deleteCard(index);
+            discard += card;
         }
 
         // false represents playerTwo
         else if (!playerOneHand)
         {
-            playerTwo.deleteCard(index);
+            card = playerTwo.deleteCard(index);
+            discard += card;
         }
     }
 
