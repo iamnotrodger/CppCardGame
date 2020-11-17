@@ -12,10 +12,10 @@ namespace cards
         hand.push_back(card);
 
         // testing
-        std::cout << "Match" << std::endl;
-        for (int i = 0; i < hand.size(); i++) {
-            std::cout << hand[i]->getName() << std::endl;
-        }
+        // std::cout << "Match" << std::endl;
+        // for (int i = 0; i < hand.size(); i++) {
+        //     std::cout << hand[i]->getName() << std::endl;
+        // }
         std::cout << "" << std::endl;
 
         return *this;
