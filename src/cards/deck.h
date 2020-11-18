@@ -2,24 +2,22 @@
 #include <vector>
 #include <iostream>
 #include "card.h"
+#include "cardFactory.h"
 
 namespace cards
 {
-    //cannot to an #include "cardFactory.h" since we include this on the CardFactory
-    class CardFactory;
-
     class Deck
     {
     private:
         std::vector<Card *> deck;
 
+        //shuffles deck
+        void shuffle();
+
     public:
-        Deck();
         Deck(std::vector<Card *>);
-        Deck(const CardFactory *);
         //Constructor which accepts an istream and reconstructs the deck from file
         Deck(std::istream &, const CardFactory *);
-        ~Deck();
         //Returns and rmoeves the top card from the deck
         Card *draw();
         bool isEmpty() { return deck.empty(); }
@@ -30,7 +28,7 @@ namespace cards
     {
         for (unsigned i = 0; i < d.deck.size(); i++)
         {
-            os << d.deck[i];
+            os << *(d.deck[i]);
         }
         return os;
     }

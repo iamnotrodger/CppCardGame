@@ -21,9 +21,9 @@ namespace cards
 
     public:
         //Constructor
-        Player();
         Player(const std::string &n) : name(n)
         {
+            coins = 0;
             hand = new Hand();
         };
         //Deconstructor

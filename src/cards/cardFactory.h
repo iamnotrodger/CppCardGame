@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
-#include "deck.h"
+#include <vector>
+#include "card.h"
 #include "blue.h"
 #include "chili.h"
 #include "stink.h"
@@ -12,6 +13,7 @@
 
 namespace cards
 {
+    class Deck;
     class CardFactory
     {
     protected:
@@ -28,21 +30,17 @@ namespace cards
         Red *redCard;
         Garden *gardenCard;
 
+        std::vector<Card *> cardList;
+
         //constructor: creates instances of the card classes
         CardFactory();
+        ~CardFactory();
 
     public:
         //returns a pointer to the only instance of card factory
         static CardFactory *getFactory();
         //deletes all instances of the card classes
-        ~CardFactory();
-        //returns a pointer to the deck
-        Deck *getDeck();
-
-        void print()
-        {
-            std::cout << *blueCard << std::endl;
-        }
+        Deck getDeck();
 
         //Copy constructor is deleted
         CardFactory(CardFactory &other) = delete;

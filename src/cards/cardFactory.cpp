@@ -1,4 +1,5 @@
 #include "cardFactory.h"
+#include "deck.h"
 
 namespace cards
 {
@@ -35,9 +36,58 @@ namespace cards
         return cardFactory;
     }
 
-    Deck *CardFactory::getDeck()
+    Deck CardFactory::getDeck()
     {
-        Deck *deck = new Deck();
+        //create vector<card>
+        //push blue cards
+        for (int i = 0; i < 20; i++)
+        {
+            cardList.push_back(blueCard);
+        }
+
+        //push chili cards
+        for (int i = 0; i < 18; i++)
+        {
+            cardList.push_back(chiliCard);
+        }
+
+        //push stink cards
+        for (int i = 0; i < 16; i++)
+        {
+            cardList.push_back(stinkCard);
+        }
+
+        //push green cards
+        for (int i = 0; i < 14; i++)
+        {
+            cardList.push_back(greenCard);
+        }
+
+        //push soy cards
+        for (int i = 0; i < 12; i++)
+        {
+            cardList.push_back(soyCard);
+        }
+
+        //push black cards
+        for (int i = 0; i < 10; i++)
+        {
+            cardList.push_back(blackCard);
+        }
+
+        //push red cards
+        for (int i = 0; i < 8; i++)
+        {
+            cardList.push_back(redCard);
+        }
+
+        //push garden
+        for (int i = 0; i < 6; i++)
+        {
+            cardList.push_back(gardenCard);
+        }
+
+        Deck deck(cardList);
         return deck;
     }
 } // namespace cards
