@@ -41,16 +41,21 @@ namespace cards
         }
     }
 
-    Card * TradeArea::trade(int index) {
+    Card * TradeArea::trade() {
         int j=0;
         for (std::list<Card *>::iterator i = cards.begin(); i != cards.end(); i++) {
-            if (j == index) {
-                Card * trade = *i;
-                cards.erase(i);
+            // if (j == index) {
+            //     Card * trade = *i;
+            //     cards.erase(i);
 
-                return trade;
-            }
-            j++;
+            //     return trade;
+            // }
+            // j++;
+
+            Card * trade = *i;
+            cards.erase(i);
+
+            return trade;
         }
     }
 

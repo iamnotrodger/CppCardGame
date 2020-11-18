@@ -67,10 +67,10 @@ namespace cards
         Card *card = hand[index];
         hand.erase(hand.begin() + index, hand.begin() + index + 1);
 
-        for (int i = 0; i < hand.size(); i++)
-        {
-            std::cout << hand[i]->getName() << std::endl;
-        }
+        // for (int i = 0; i < hand.size(); i++)
+        // {
+        //     std::cout << hand[i]->getName() << std::endl;
+        // }
         return card;
     }
 } // namespace cards

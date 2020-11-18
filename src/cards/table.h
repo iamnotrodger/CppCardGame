@@ -44,6 +44,7 @@ namespace cards
         TradeArea getTrade() {return trade;}
         void addCardToChain(Card *card);
         void clearTrade();
+        Card * discardTopCard(bool);
         
     };
 
