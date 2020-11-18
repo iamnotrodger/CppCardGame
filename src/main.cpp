@@ -87,11 +87,11 @@ void loop()
                     cout << "Would you like to take any cards from the trading table? " << endl;
                     cin >> trading;
                 }
-                
-                // remove the rest of the cards into the discard pile
             }
 
+            // remove the rest of the cards into the discard pile
             table.clearTrade();
+            cout << "Cleared!" << endl;
         }
 
         // adding top card phase
@@ -99,6 +99,8 @@ void loop()
         {
             cout << "Your top card is being added to your chains." << endl;
             cout << "" << endl;
+
+            table.discardTopCard(table.getTurn());
 
             // Check if added card is the same type of the chain
 
@@ -127,6 +129,7 @@ void loop()
 
             table.discardCard(discard_index, table.getTurn());
 
+            cout << "" << endl;
             cout << "Here is your hand after discarding:" << endl;
             table.printHand(table.getTurn());
             cout << "" << endl;
@@ -148,9 +151,11 @@ void loop()
         // Give option to take cards
         cout << "Would you like to take any cards from the trading table? " << endl;
         cin >> trading;
+        cout << "" << endl;
 
         if (trading == "yes") {
             while (trading == "yes" && table.getTradeArea() != 0) {
+                cout << "" << endl;
                 cout << "Choose a card (by suit): " << endl;
                 cin >> bean;
 
@@ -164,8 +169,6 @@ void loop()
             
             // remove the rest of the cards into the discard pile
         }
-
-        table.clearTrade();
 
 
         // draw phase

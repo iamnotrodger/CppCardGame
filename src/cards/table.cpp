@@ -92,13 +92,33 @@ namespace cards
         }
     }
 
+    // removes a card from a player's hand
+    Card * Table::discardTopCard(bool playerOneHand)
+    {
+        Card * card;
+        // true represents playerOne
+        if (playerOneHand)
+        {
+            card = playerOne->deleteCard(0);
+        }
+
+        // false represents playerTwo
+        else if (!playerOneHand)
+        {
+            card = playerTwo->deleteCard(0);
+        }
+
+        return card;
+    }
+
     // clears the TradeArea
     void Table::clearTrade()
     {
         Card * card;
         
-        for (int i = 0; i<trade.numCards(); i++) {
-            card = trade.trade(i);
+        //for (int i = 0; i<trade.numCards(); i++)
+        while (trade.numCards() > 0) {
+            card = trade.trade();
             discard += card;
         }
     }
