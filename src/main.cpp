@@ -96,7 +96,7 @@ void loop()
             cout << "Your top card is being added to your chains." << endl;
             cout << "" << endl;
 
-            table.discardTopCard(table.getTurn());
+            table.addCardToChain(table.discardTopCard(table.getTurn()));
 
             // Check if added card is the same type of the chain
 
@@ -117,6 +117,7 @@ void loop()
 
         cout << "Would you like to discard a card? " << endl;
         cin >> discard;
+        cout << "" << endl;
 
         if (discard == "yes")
         {

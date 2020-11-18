@@ -88,6 +88,7 @@ namespace cards
             try
             {
                 *(chains[i]) += card;
+                std::cout << "Added to current chain" << std::endl;
                 flag = true;
                 return;
             }

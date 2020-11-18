@@ -15,6 +15,7 @@ namespace cards
         void shuffle();
 
     public:
+        Deck();
         Deck(std::vector<Card *>);
         //Constructor which accepts an istream and reconstructs the deck from file
         Deck(std::istream &, const CardFactory *);

@@ -6,8 +6,8 @@ namespace cards
     // constructor
     Table::Table(std::string s1, std::string s2)
     {
-        playerOne = new Player();
-        playerTwo = new Player();
+        playerOne = new Player(s1);
+        playerTwo = new Player(s2);
     }
 
     // returns a boolean indicating who is the winner

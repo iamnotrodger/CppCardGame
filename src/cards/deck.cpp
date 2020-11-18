@@ -22,6 +22,57 @@ namespace cards
         shuffle();
     }
 
+    Deck::Deck() {
+        for (int i = 0; i < 20; i++)
+        {
+            deck.push_back(new Blue());
+        }
+
+        //push chili cards
+        for (int i = 0; i < 18; i++)
+        {
+            deck.push_back(new Chili());
+        }
+
+        //push stink cards
+        for (int i = 0; i < 16; i++)
+        {
+            deck.push_back(new Stink());
+        }
+
+        //push green cards
+        for (int i = 0; i < 14; i++)
+        {
+            deck.push_back(new Green());
+        }
+
+        //push soy cards
+        for (int i = 0; i < 12; i++)
+        {
+            deck.push_back(new Soy());
+        }
+
+        //push black cards
+        for (int i = 0; i < 10; i++)
+        {
+            deck.push_back(new Black());
+        }
+
+        //push red cards
+        for (int i = 0; i < 8; i++)
+        {
+            deck.push_back(new Red());
+        }
+
+        //push garden
+        for (int i = 0; i < 6; i++)
+        {
+            deck.push_back(new Garden());
+        }
+
+        shuffle();
+    }
+
     Card *Deck::draw()
     {
         if (deck.size() == 0)
