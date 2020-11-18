@@ -47,40 +47,12 @@ void setup()
         table.add(table.draw(), false);
     }
 
-    // cout << "What is Player 1's name? " << endl;
-    // cin >> name1;
-
-    // cout << "" << endl;
-
-    // cout << "What is Player 2's name? " << endl;
-    // cin >> name2;
-
-    // cout << "" << endl;
-
-    // cards::Player play1 = cards::Player(name1);
-    // cards::Player play2 = cards::Player(name2);
-
-    // testing
-    // cout << "Each player starts with 5 cards: " << endl;
-    // cout << "" << endl;
-    // cout << "Player 1:" << endl;
-    // for (int i = 0; i < 5; i++) {
-    // cout << b[i]->getName() << endl;
-    // table.getPlayerOne().printHand(true);
-    // }
-
-    // cout << "" << endl;
-    // cout << "Player 2:" << endl;
-    // for (int j = 0; j < 5; j++) {
-    // cout << c[j]->getName() << endl;
-    // table.getPlayerTwo().printHand(false);
-    // }
+    cout << "" << endl;
 }
 
 // main state of the game
 void loop()
 {
-
     while (!table.isEmpty()) {
 
         // random
@@ -126,6 +98,7 @@ void loop()
         while (removeTop)
         {
             cout << "Your top card is being added to your chains." << endl;
+            cout << "" << endl;
 
             // Check if added card is the same type of the chain
 
@@ -149,7 +122,6 @@ void loop()
 
         if (discard == "yes")
         {
-            table.printHand(table.getTurn());
             cout << "Which card would you like to discard (choose index): " << endl;
             cin >> discard_index;
 
@@ -162,12 +134,10 @@ void loop()
 
 
         // trade area phase 
-        cout << "Cards are being added to the trade table" << endl;
         for (int i = 0; i < 3; i++) {
             table.add(table.draw());
         }
 
-        cout << "Before trade phase" << endl;
         table.tradePhase();
 
         // add cards to chain, optional for player

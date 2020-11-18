@@ -10,8 +10,8 @@ namespace cards
     class Table
     {
     private:
-        Player playerOne;
-        Player playerTwo;
+        Player * playerOne;
+        Player * playerTwo;
         Deck deck;
         DiscardPile discard;
         TradeArea trade;
@@ -30,9 +30,7 @@ namespace cards
 
         // helper methods
         void changeTurn();
-        bool getTurn() { return playerOneTurn; }
-        Player getPlayerOne() { return playerOne; }
-        Player getPlayerTwo() { return playerTwo; }
+        bool getTurn() { return playerOneTurn; };
         void add(Card *, bool);
         void add(Card *);
         int getTradeArea();

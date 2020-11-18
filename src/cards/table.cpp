@@ -6,8 +6,8 @@ namespace cards
     // constructor
     Table::Table(std::string s1, std::string s2)
     {
-        playerOne = Player(s1);
-        playerTwo = Player(s2);
+        playerOne = new Player();
+        playerTwo = new Player();
     }
 
     // returns a boolean indicating who is the winner
@@ -19,14 +19,14 @@ namespace cards
         }
 
         // If it's a tie, player 1 wins
-        if (playerOne.getNumCoins() >= playerTwo.getNumCoins())
+        if (playerOne->getNumCoins() >= playerTwo->getNumCoins())
         {
-            winner = playerOne.getName();
+            winner = playerOne->getName();
         }
 
-        else if (playerOne.getNumCoins() < playerTwo.getNumCoins())
+        else if (playerOne->getNumCoins() < playerTwo->getNumCoins())
         {
-            winner = playerTwo.getName();
+            winner = playerTwo->getName();
         }
     }
 
@@ -35,12 +35,12 @@ namespace cards
     {
         if (playerOneTurn)
         {
-            playerOne.printHand(show);
+            playerOne->printHand(show);
         }
 
         else
         {
-            playerTwo.printHand(show);
+            playerTwo->printHand(show);
         }
     }
 
@@ -56,13 +56,14 @@ namespace cards
         // true represents playerOne
         if (playerOneHand)
         {
-            playerOne.addCard(card);
+            // std::cout << "Finished table" << std::endl;
+            playerOne->addCard(card);
         }
 
         // false represents playerTwo
         else if (!playerOneHand)
         {
-            playerTwo.addCard(card);
+            playerTwo->addCard(card);
         }
     }
 
@@ -79,14 +80,14 @@ namespace cards
         // true represents playerOne
         if (playerOneHand)
         {
-            card = playerOne.deleteCard(index);
+            card = playerOne->deleteCard(index);
             discard += card;
         }
 
         // false represents playerTwo
         else if (!playerOneHand)
         {
-            card = playerTwo.deleteCard(index);
+            card = playerTwo->deleteCard(index);
             discard += card;
         }
     }
@@ -104,7 +105,10 @@ namespace cards
 
     // returns the size of trade area
     int Table::getTradeArea() {
-        trade.show();
+        if (trade.numCards() != 0) {
+            trade.show();
+        }
+        
         return trade.numCards();
     }
 
@@ -125,12 +129,12 @@ namespace cards
     void Table::addCardToChain(Card *card) {
         if (playerOneTurn)
         {
-            playerOne.addCardToChain(card);
+            playerOne->addCardToChain(card);
         }
 
         else
         {
-            playerTwo.addCardToChain(card);
+            playerTwo->addCardToChain(card);
         }
     }
     
