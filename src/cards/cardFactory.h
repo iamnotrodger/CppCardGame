@@ -44,10 +44,10 @@ namespace cards
             std::cout << *blueCard << std::endl;
         }
 
-        //makes it unclonable
-        // CardFactory(CardFactory &other) = delete;
-        //makes it unassingable
-        // void operator=(const CardFactory &) = delete;
+        //Copy constructor is deleted
+        CardFactory(CardFactory &other) = delete;
+        //Assignment operator is deleted
+        void operator=(const CardFactory &) = delete;
     };
 
 } // namespace cards

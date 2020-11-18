@@ -35,9 +35,9 @@ namespace cards
         return cardFactory;
     }
 
-    // Deck *CardFactory::getDeck()
-    // {
-    //     Deck *deck = new Deck();
-    //     return deck;
-    // }
+    Deck *CardFactory::getDeck()
+    {
+        Deck *deck = new Deck();
+        return deck;
+    }
 } // namespace cards
