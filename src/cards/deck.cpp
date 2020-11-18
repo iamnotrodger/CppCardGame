@@ -14,62 +14,64 @@
 
 namespace cards
 {
+    Deck::Deck() {}
     // temporary constructor in replacement for CardFactory
-    Deck::Deck() {
-        int i = 0;
+    // Deck::Deck() {
+    //     int i = 0;
 
-        for (i; i < 20; i++)
-        {
-            deck.push_back(new Blue());
-        }
+    //     for (i; i < 20; i++)
+    //     {
+    //         deck.push_back(new Blue());
+    //     }
 
-        for (i; i < 38; i++)
-        {
-            deck.push_back(new Chili());
-        }
+    //     for (i; i < 38; i++)
+    //     {
+    //         deck.push_back(new Chili());
+    //     }
 
-        for (i; i < 54; i++)
-        {
-            deck.push_back(new Stink());
-        }
+    //     for (i; i < 54; i++)
+    //     {
+    //         deck.push_back(new Stink());
+    //     }
 
-        for (i; i < 68; i++)
-        {
-            deck.push_back(new Green());
-        }
+    //     for (i; i < 68; i++)
+    //     {
+    //         deck.push_back(new Green());
+    //     }
 
-        for (i; i < 80; i++)
-        {
-            deck.push_back(new Soy());
-        }
+    //     for (i; i < 80; i++)
+    //     {
+    //         deck.push_back(new Soy());
+    //     }
 
-        for (i; i < 90; i++)
-        {
-            deck.push_back(new Black());
-        }
+    //     for (i; i < 90; i++)
+    //     {
+    //         deck.push_back(new Black());
+    //     }
 
-        for (i; i < 98; i++)
-        {
-            deck.push_back(new Red());
-        }
+    //     for (i; i < 98; i++)
+    //     {
+    //         deck.push_back(new Red());
+    //     }
 
-        for (i; i < 104; i++)
-        {
-            deck.push_back(new Garden());
-        }
-        auto randomize = std::default_random_engine {};
-        std::shuffle(deck.begin(), deck.end(),randomize);
+    //     for (i; i < 104; i++)
+    //     {
+    //         deck.push_back(new Garden());
+    //     }
+    //     auto randomize = std::default_random_engine {};
+    //     std::shuffle(deck.begin(), deck.end(),randomize);
 
-        // testing
-        // for (int j = 0; j < 104; j++)
-        // {
-        //     std::cout << deck[j]->getName() << std::endl;
-        // }
-    }
+    //     // testing
+    //     // for (int j = 0; j < 104; j++)
+    //     // {
+    //     //     std::cout << deck[j]->getName() << std::endl;
+    //     // }
+    // }
 
     Deck::Deck(std::vector<Card *> deckVector)
     {
-        for (int i = 0; i < deckVector.size(); i++) {
+        for (int i = 0; i < deckVector.size(); i++)
+        {
             deck.push_back(deckVector[i]);
         }
     }
@@ -84,7 +86,8 @@ namespace cards
 
     Card *Deck::draw()
     {
-        if (deck.size() == 0) {
+        if (deck.size() == 0)
+        {
             return NULL;
         }
 
@@ -93,4 +96,4 @@ namespace cards
         // std::cout << topCard->getName() << std::endl;
         return topCard;
     }
-} 
+} // namespace cards

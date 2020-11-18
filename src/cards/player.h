@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 #include "cardFactory.h"
 #include "chain.h"
 #include "hand.h"
@@ -21,9 +22,12 @@ namespace cards
     public:
         //Constructor
         Player();
+        Player(const std::string &n) : name(n)
+        {
+            hand = new Hand();
+        };
         //Deconstructor
         ~Player();
-        Player(std::string &n) : name(n), coins(0){};
         //reconstruct player form file
         Player(std::istream &, const CardFactory *);
         std::string getName()
@@ -56,13 +60,12 @@ namespace cards
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)
     {
-        os << p.name << " : " << p.coins << " coins" << std::endl;
+        os << p.name << ":\t" << p.coins << " coins" << std::endl;
         for (unsigned i = 0; i < p.chains.size(); i++)
         {
             os << p.chains[i];
         }
-        os << std::endl;
-        os << p.hand;
+        os << "Hand:\t" << *(p.hand);
 
         return os;
     };

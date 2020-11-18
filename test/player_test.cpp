@@ -8,12 +8,13 @@ using namespace cards;
 
 int main()
 {
-    Player pp;
+    Player *pp = new Player("PeePee");
     Card *card = new Blue();
-    pp.addCard(card);
-    pp.addCard(card);
-    pp.addCard(card);
-    pp.printHand(true);
+    pp->addCard(card);
+    pp->addCard(card);
+    pp->addCard(card);
+    pp->printHand(true);
+    cout << (*pp) << endl;
 }
 
 //g++ player_test.cpp ../src/cards/blue.cpp ../src/cards/chili.cpp ../src/cards/stink.cpp ../src/cards/green.cpp ../src/cards/soy.cpp ../src/cards/black.cpp ../src/cards/red.cpp ../src/cards/garden.cpp ../src/cards/player.cpp ../src/cards/hand.cpp
