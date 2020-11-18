@@ -39,20 +39,21 @@ namespace cards
         Chain<T> &operator+=(Card *);
         //Counts the number of cards in the current chain and returns the number of coins according to the function Card::getCardsPerCoin
         int sell();
-        // friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
-        // {
-        //     for (unsigned i = 0; i < c.chain.size(); i++)
-        //     {
-        //         if (i == 0)
-        //         {
-        //             os << c.chain[i]->getName() << " \t ";
-        //         }
-        //         os << *(c.chain[i]) << " ";
-        //     }
-        //     os << std::endl;
+        friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
+        {
+            for (unsigned i = 0; i < c.chain.size(); i++)
+            {
+                if (i == 0)
+                {
+                    os << c.chain[i]->getName() << " \t ";
+                }
+                os << *(c.chain[i]);
+            }
+            os << std::endl;
 
-        //     return os;
-        // }
+            return os;
+        }
+
     protected:
         void print(std::ostream &os) const
         {
