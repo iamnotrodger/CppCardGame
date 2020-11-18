@@ -21,6 +21,7 @@ namespace cards
         bool legal(Card *);
         //removes a card of the corresponding bean name from the trade are
         Card *trade(std::string);
+        Card *trade(int);
         //returns the nubmer of cards currently in the trade area
         int numCards()
         {

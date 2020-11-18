@@ -41,6 +41,19 @@ namespace cards
         }
     }
 
+    Card * TradeArea::trade(int index) {
+        int j=0;
+        for (std::list<Card *>::iterator i = cards.begin(); i != cards.end(); i++) {
+            if (j == index) {
+                Card * trade = *i;
+                cards.erase(i);
+
+                return trade;
+            }
+            j++;
+        }
+    }
+
     void TradeArea::show() {
         std::cout << "Trade Area: " << std::endl;
         for (std::list<Card *>::iterator i = cards.begin(); i != cards.end(); i++) {
