@@ -13,12 +13,6 @@
 
 namespace cards
 {
-    // constructor
-    Player::Player()
-    {
-        hand = new Hand();
-    }
-
     //Deconstructor
     Player::~Player()
     {
@@ -35,7 +29,7 @@ namespace cards
     // returns the number of chains a player has
     int Player::getMaxNumChains()
     {
-        return chains.size();
+        return maxChain;
     }
 
     // returns a particular chain
@@ -55,6 +49,7 @@ namespace cards
         if (chains.size() != 3)
         {
             coins -= 3;
+            maxChain++;
         }
     }
 
@@ -86,16 +81,31 @@ namespace cards
     // Adds card into the vector<Chain_Base> and creates a new Chain if the type of card does not exist
     void Player::addCardToChain(Card *card)
     {
-        //TODO: Select which chain to add on
-        //TODO: Throw and error if the availalbe chains is already occuppied
         bool flag = false;
-        //for(int i = 0; i < chains.size(); i++) {
-        //try {
-        //} catch() {
-        //continue;
-        //}
-        //}
-        createChain(card);
+        int size = chains.size();
+        for (int i = 0; i < size; i++)
+        {
+            try
+            {
+                *(chains[i]) += card;
+                flag = true;
+                return;
+            }
+            catch (IllegalType &e)
+            {
+                continue;
+            }
+        }
+
+        if (!flag && size < maxChain)
+        {
+            createChain(card);
+            std::cout << "A new Chain has been created" << std::endl;
+        }
+        else
+        {
+            std::cout << "Card: " << card->getName() << ", was not added. Chain is full: number of chain " << size << " and max number of chain is " << maxChain << std::endl;
+        }
     }
 
     //

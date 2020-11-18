@@ -10,7 +10,20 @@ namespace cards
     //base class for Chain
     class Chain_Base
     {
+    public:
+        virtual Chain_Base &operator+=(Card *) = 0;
+        friend std::ostream &operator<<(std::ostream &, const Chain_Base &);
+
+    protected:
+        virtual void print(std::ostream &) const = 0;
     };
+
+    inline std::ostream &operator<<(std::ostream &os, const Chain_Base &cb)
+    {
+        cb.print(os);
+        return os;
+    }
+
     template <class T>
     class Chain : public Chain_Base
     {
@@ -26,19 +39,33 @@ namespace cards
         Chain<T> &operator+=(Card *);
         //Counts the number of cards in the current chain and returns the number of coins according to the function Card::getCardsPerCoin
         int sell();
-        friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
-        {
-            for (unsigned i = 0; i < c.chain.size(); i++)
-            {
-                if (i == 0)
-                {
-                    os << c.chain[i]->getName() << " \t ";
-                }
-                os << *(c.chain[i]) << " ";
-            }
-            os << std::endl;
+        // friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
+        // {
+        //     for (unsigned i = 0; i < c.chain.size(); i++)
+        //     {
+        //         if (i == 0)
+        //         {
+        //             os << c.chain[i]->getName() << " \t ";
+        //         }
+        //         os << *(c.chain[i]) << " ";
+        //     }
+        //     os << std::endl;
 
-            return os;
+        //     return os;
+        // }
+    protected:
+        void print(std::ostream &os) const
+        {
+            int size = chain.size();
+            if (size > 0)
+            {
+                os << chain[0]->getName() << " \t ";
+                for (unsigned i = 0; i < size; i++)
+                {
+                    os << *(chain[i]);
+                }
+                os << std::endl;
+            }
         }
     };
 

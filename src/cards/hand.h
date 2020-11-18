@@ -37,7 +37,7 @@ namespace cards
         {
             os << *(h.hand[i]);
         };
-
+        os << std::endl;
         return os;
     }
 } // namespace cards

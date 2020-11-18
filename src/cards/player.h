@@ -13,6 +13,7 @@ namespace cards
         //variables
         std::string name;
         int coins;
+        int maxChain;
         Hand *hand;
         std::vector<Chain_Base *> chains;
 
@@ -23,6 +24,7 @@ namespace cards
         //Constructor
         Player(const std::string &n) : name(n)
         {
+            maxChain = 2;
             coins = 0;
             hand = new Hand();
         };
@@ -61,9 +63,10 @@ namespace cards
     inline std::ostream &operator<<(std::ostream &os, const Player &p)
     {
         os << p.name << ":\t" << p.coins << " coins" << std::endl;
+        os << "Chains:" << std::endl;
         for (unsigned i = 0; i < p.chains.size(); i++)
         {
-            os << p.chains[i];
+            os << *(p.chains[i]);
         }
         os << "Hand:\t" << *(p.hand);
 
