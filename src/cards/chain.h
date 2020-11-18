@@ -41,15 +41,16 @@ namespace cards
         int sell();
         friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
         {
-            for (unsigned i = 0; i < c.chain.size(); i++)
+            int size = c.chain.size();
+            if (size > 0)
             {
-                if (i == 0)
+                os << c.chain[0]->getName() << " \t ";
+                for (unsigned i = 0; i < size; i++)
                 {
-                    os << c.chain[i]->getName() << " \t ";
+                    os << *(c.chain[i]);
                 }
-                os << *(c.chain[i]);
+                os << std::endl;
             }
-            os << std::endl;
 
             return os;
         }
