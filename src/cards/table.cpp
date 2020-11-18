@@ -63,6 +63,7 @@ namespace cards
         // false represents playerTwo
         else if (!playerOneHand)
         {
+            // std::cout << "Finished table 2" << std::endl;
             playerTwo->addCard(card);
         }
     }
@@ -118,8 +119,10 @@ namespace cards
         
         //for (int i = 0; i<trade.numCards(); i++)
         while (trade.numCards() > 0) {
+            // std::cout << "Traded" << std::endl;
             card = trade.trade();
             discard += card;
+            // std::cout << trade.numCards() << std::endl;
         }
     }
 

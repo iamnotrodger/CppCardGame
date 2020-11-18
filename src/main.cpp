@@ -46,15 +46,12 @@ void setup()
     {
         table.add(table.draw(), false);
     }
-
-    cout << "" << endl;
 }
 
 // main state of the game
 void loop()
 {
     while (!table.isEmpty()) {
-
         // random
         bool removeTop = true;
         bool tradeMatch = false;
@@ -91,7 +88,6 @@ void loop()
 
             // remove the rest of the cards into the discard pile
             table.clearTrade();
-            cout << "Cleared!" << endl;
         }
 
         // adding top card phase
@@ -134,7 +130,6 @@ void loop()
             table.printHand(table.getTurn());
             cout << "" << endl;
         }
-
 
         // trade area phase 
         for (int i = 0; i < 3; i++) {
