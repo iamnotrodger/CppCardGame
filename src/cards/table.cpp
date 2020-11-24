@@ -161,5 +161,14 @@ namespace cards
         }
     }
     
+    void Table::sellChain(int index) {
+        if (playerOneTurn) {
+            playerOne += playerOne->sellChain(index);
+        }
+
+        else {
+            playerTwo += playerTwo->sellChain(index);
+        }
+    }
 
 } // namespace cards

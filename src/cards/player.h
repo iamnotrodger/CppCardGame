@@ -58,6 +58,8 @@ namespace cards
         void addCard(Card *);
         Card *deleteCard(int);
         void addCardToChain(Card *);
+        int sellChain(int);
+        void deleteChain(int);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)
