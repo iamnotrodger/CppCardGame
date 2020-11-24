@@ -78,6 +78,14 @@ namespace cards
         return hand->deleteCard(index);
     }
 
+    int Player::sellChain(int index) {
+        return chains[index]->sell();
+    }
+
+    void Player::deleteChain(int index) {
+        chains.erase(chains.begin(),chains.begin()+index);
+    }
+
     // Adds card into the vector<Chain_Base> and creates a new Chain if the type of card does not exist
     void Player::addCardToChain(Card *card)
     {

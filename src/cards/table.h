@@ -45,7 +45,7 @@ namespace cards
         void addCardToChain(Card *card);
         void clearTrade();
         Card * discardTopCard(bool);
-        
+        void sellChain(int);
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)
