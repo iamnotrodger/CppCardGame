@@ -18,7 +18,7 @@ namespace cards
         std::vector<Chain_Base *> chains;
 
         //private member functions
-        void createChain(Card *);
+        Chain_Base *createChain(Card *);
 
     public:
         //Constructor

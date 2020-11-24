@@ -36,6 +36,7 @@ int main()
     cout << chain;
 
     cout << chain.sell() << endl;
+    cout << chain.check(c3) << endl;
 }
 
-//g++ chain_test.cpp ../src/cards/chili.cpp ../src/cards/blue.cpp
+//g++ -std=c++11 chain_test.cpp ../src/cards/chili.cpp ../src/cards/blue.cpp

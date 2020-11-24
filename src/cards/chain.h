@@ -13,6 +13,8 @@ namespace cards
     public:
         virtual Chain_Base &operator+=(Card *) = 0;
         friend std::ostream &operator<<(std::ostream &, const Chain_Base &);
+        virtual int sell() = 0;
+        virtual bool check(Card *) = 0;
 
     protected:
         virtual void print(std::ostream &) const = 0;
@@ -39,6 +41,7 @@ namespace cards
         Chain<T> &operator+=(Card *);
         //Counts the number of cards in the current chain and returns the number of coins according to the function Card::getCardsPerCoin
         int sell();
+        bool check(Card *);
         friend std::ostream &operator<<(std::ostream &os, const Chain<T> &c)
         {
             int size = c.chain.size();
@@ -85,6 +88,12 @@ namespace cards
         }
         chain.push_back(card);
         return *this;
+    }
+
+    template <class T>
+    bool Chain<T>::check(Card *card)
+    {
+        return (typeid(T) == typeid(*(card)));
     }
 
     template <class T>
