@@ -7,6 +7,7 @@
 #include "cards/card.h"
 #include "cards/discardpile.h"
 using namespace std;
+using namespace cards;
 
 // functions
 void setup();
@@ -17,13 +18,16 @@ string name1 = "Patrick";
 string name2 = "Rodger";
 
 // table
-cards::Table table = cards::Table(name1, name2);
+Table table = Table(name1, name2);
 
 // save
 bool pause = false;
 
+CardFactory *CardFactory::cardFactory;
+
 int main()
 {
+    CardFactory *cf = CardFactory::getFactory();
     setup();
     loop();
 }
@@ -51,17 +55,18 @@ void setup()
 // main state of the game
 void loop()
 {
-    while (!table.isEmpty()) {
+    while (!table.isEmpty())
+    {
         // random
         bool removeTop = true;
         bool tradeMatch = false;
         string trading;
         string bean;
 
-    // save functionality
-    // if (pause) {
-    //     save()
-    // }
+        // save functionality
+        // if (pause) {
+        //     save()
+        // }
 
         cout << "Here is your starting hand: " << endl;
         table.printHand(table.getTurn());
@@ -73,8 +78,10 @@ void loop()
             cout << "Would you like to take any cards from the trading table? " << endl;
             cin >> trading;
 
-            if (trading == "yes") {
-                while (trading == "yes" && table.getTradeArea() != 0) {
+            if (trading == "yes")
+            {
+                while (trading == "yes" && table.getTradeArea() != 0)
+                {
                     cout << "Choose a card (by suit): " << endl;
                     cin >> bean;
 
@@ -132,8 +139,9 @@ void loop()
             cout << "" << endl;
         }
 
-        // trade area phase 
-        for (int i = 0; i < 3; i++) {
+        // trade area phase
+        for (int i = 0; i < 3; i++)
+        {
             table.add(table.draw());
         }
 
@@ -149,8 +157,10 @@ void loop()
         cin >> trading;
         cout << "" << endl;
 
-        if (trading == "yes") {
-            while (trading == "yes" && table.getTradeArea() != 0) {
+        if (trading == "yes")
+        {
+            while (trading == "yes" && table.getTradeArea() != 0)
+            {
                 cout << "" << endl;
                 cout << "Choose a card (by suit): " << endl;
                 cin >> bean;
@@ -161,14 +171,13 @@ void loop()
                 cout << "Would you like to take any cards from the trading table? " << endl;
                 cin >> trading;
             }
-            
-            
+
             // remove the rest of the cards into the discard pile
         }
 
-
         // draw phase
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++)
+        {
             table.add(table.draw(), table.getTurn());
         }
 
@@ -179,6 +188,5 @@ void loop()
         // table.changeTurn();
         cout << "Ready to continue?" << endl;
         cin >> trading;
-
     }
 }

@@ -90,4 +90,42 @@ namespace cards
         Deck deck(cardList);
         return deck;
     }
+
+    Card *CardFactory::createCard(char c)
+    {
+        if (c == 'B')
+        {
+            return blueCard;
+        }
+        else if (c == 'C')
+        {
+            return chiliCard;
+        }
+        else if (c == 'S')
+        {
+            return stinkCard;
+        }
+        else if (c == 'G')
+        {
+            return greenCard;
+        }
+        else if (c == 's')
+        {
+            return soyCard;
+        }
+        else if (c == 'b')
+        {
+            return blackCard;
+        }
+        else if (c == 'R')
+        {
+            return redCard;
+        }
+        else if (c == 'g')
+        {
+            return gardenCard;
+        }
+
+        return nullptr;
+    }
 } // namespace cards

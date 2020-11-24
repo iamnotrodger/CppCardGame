@@ -42,6 +42,9 @@ namespace cards
         //deletes all instances of the card classes
         Deck getDeck();
 
+        //return
+        Card *createCard(char);
+
         //Copy constructor is deleted
         CardFactory(CardFactory &other) = delete;
         //Assignment operator is deleted
