@@ -57,7 +57,7 @@ namespace cards
         // helper functions
         void addCard(Card *);
         Card *deleteCard(int);
-        void addCardToChain(Card *);
+        bool addCardToChain(Card *);
         int sellChain(int);
         void deleteChain(int);
     };
