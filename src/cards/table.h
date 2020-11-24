@@ -42,9 +42,9 @@ namespace cards
 
         // testing only
         TradeArea getTrade() {return trade;}
-        void addCardToChain(Card *card);
+        bool addCardToChain(Card *card);
         void clearTrade();
-        Card * discardTopCard(bool);
+        Card * discardTopCard();
         void sellChain(int);
     };
 

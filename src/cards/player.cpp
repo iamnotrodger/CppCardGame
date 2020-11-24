@@ -87,7 +87,7 @@ namespace cards
     }
 
     // Adds card into the vector<Chain_Base> and creates a new Chain if the type of card does not exist
-    void Player::addCardToChain(Card *card)
+    bool Player::addCardToChain(Card *card)
     {
         bool flag = false;
         int size = chains.size();
@@ -97,7 +97,7 @@ namespace cards
         if (size >= maxChain)
         {
             std::cout << "Card: " << card->getName() << ", was not added. Chain is full: number of chain " << size << " and max number of chain is " << maxChain << std::endl;
-            return;
+            return false;
         }
 
         for (i; i < size; i++)
@@ -118,7 +118,7 @@ namespace cards
         }
 
         *(chain) += card;
-        return;
+        return true;
     }
 
     //

@@ -94,17 +94,17 @@ namespace cards
     }
 
     // removes a card from a player's hand
-    Card * Table::discardTopCard(bool playerOneHand)
+    Card * Table::discardTopCard()
     {
         Card * card;
         // true represents playerOne
-        if (playerOneHand)
+        if (playerOneTurn)
         {
             card = playerOne->deleteCard(0);
         }
 
         // false represents playerTwo
-        else if (!playerOneHand)
+        else if (!playerOneTurn)
         {
             card = playerTwo->deleteCard(0);
         }
@@ -149,15 +149,15 @@ namespace cards
     }
 
 
-    void Table::addCardToChain(Card *card) {
+    bool Table::addCardToChain(Card *card) {
         if (playerOneTurn)
         {
-            playerOne->addCardToChain(card);
+            return playerOne->addCardToChain(card);
         }
 
         else
         {
-            playerTwo->addCardToChain(card);
+            return playerTwo->addCardToChain(card);
         }
     }
     

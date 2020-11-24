@@ -62,6 +62,7 @@ void loop()
         bool tradeMatch = false;
         string trading;
         string bean;
+        int index;
 
         // save functionality
         // if (pause) {
@@ -103,7 +104,17 @@ void loop()
             cout << "Your top card is being added to your chains." << endl;
             cout << "" << endl;
 
-            table.addCardToChain(table.discardTopCard(table.getTurn()));
+            if (!table.addCardToChain(table.discardTopCard())) {
+                cout << "Please choose a chain to discard: (by index): " << endl;
+                cin >> index;
+
+                while (index > 1 || index < 0) {
+                    cout << "Invalid index. Please choose again." << endl;
+                    cin >> index;
+                }
+
+                table.sellChain(index);
+            }
 
             // Check if added card is the same type of the chain
 
