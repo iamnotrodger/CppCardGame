@@ -1,17 +1,12 @@
 #include <iostream>
-#include "cards/chili.h"
 #include "cards/table.h"
-#include "cards/player.h"
-#include "cards/deck.h"
-#include "cards/hand.h"
-#include "cards/card.h"
-#include "cards/discardpile.h"
+
 using namespace std;
 using namespace cards;
 
 // functions
-void setup();
-void loop();
+Table *setup(bool);
+void loop(Table &);
 
 // player 1 and player 2
 string name1 = "Patrick";
@@ -24,12 +19,12 @@ CardFactory *CardFactory::cardFactory;
 
 int main()
 {
-    Table *table = setupTable(false);
+    Table *table = setup(false);
     loop(*table);
 }
 
 // sets up all of the variables for the game to take place
-Table *setupTable(bool save)
+Table *setup(bool save)
 {
     CardFactory *cf = CardFactory::getFactory();
     Table *table = new Table(name1, name2, cf);
