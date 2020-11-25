@@ -64,7 +64,7 @@ namespace cards
             int size = chain.size();
             if (size > 0)
             {
-                os << chain[0]->getName() << " \t ";
+                os << chain[0]->getName() << "\t";
                 for (unsigned i = 0; i < size; i++)
                 {
                     os << *(chain[i]);

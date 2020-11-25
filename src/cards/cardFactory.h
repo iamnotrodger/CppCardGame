@@ -39,9 +39,7 @@ namespace cards
     public:
         //returns a pointer to the only instance of card factory
         static CardFactory *getFactory();
-        //deletes all instances of the card classes
-        Deck getDeck();
-
+        Deck *getDeck();
         //return
         Card *createCard(char);
 

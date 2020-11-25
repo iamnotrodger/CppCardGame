@@ -15,7 +15,7 @@ namespace cards
         void shuffle();
 
     public:
-        Deck();
+        Deck(){};
         Deck(std::vector<Card *>);
         //Constructor which accepts an istream and reconstructs the deck from file
         Deck(std::istream &, const CardFactory *);
@@ -27,10 +27,12 @@ namespace cards
 
     inline std::ostream &operator<<(std::ostream &os, const Deck &d)
     {
+        os << "Deck\t";
         for (unsigned i = 0; i < d.deck.size(); i++)
         {
             os << *(d.deck[i]);
         }
+        os << std::endl;
         return os;
     }
 

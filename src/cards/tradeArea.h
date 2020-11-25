@@ -12,7 +12,7 @@ namespace cards
         std::list<Card *> cards;
 
     public:
-        TradeArea();
+        TradeArea(){};
         //reconstructs the TradeArea from file
         TradeArea(std::istream &, const CardFactory *);
         //Adds the card to the trade are but it does not check if it is legal to place the card.
@@ -29,19 +29,22 @@ namespace cards
         }
         friend std::ostream &operator<<(std::ostream &, const TradeArea &);
 
-        // helper functions 
+        // helper functions
         void show();
     };
 
     inline std::ostream &operator<<(std::ostream &os, const TradeArea &t)
     {
+        os << "TradeArea\t";
         //iterator for list
         //yeah i don't exactly know what's happening here either (;
         std::list<Card *>::const_iterator i;
         for (i = t.cards.begin(); i != t.cards.end(); i++)
         {
-            os << (*i);
+            os << **i;
         };
+
+        os << std::endl;
 
         return os;
     }

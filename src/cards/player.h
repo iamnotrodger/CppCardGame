@@ -76,6 +76,7 @@ namespace cards
         {
             os << *(p.chains[i]);
         }
+        os << '\t' << std::endl;
 
         return os;
     };

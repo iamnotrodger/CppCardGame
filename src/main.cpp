@@ -17,9 +17,6 @@ void loop();
 string name1 = "Patrick";
 string name2 = "Rodger";
 
-// table
-Table table = Table(name1, name2);
-
 // save
 bool pause = false;
 
@@ -27,14 +24,15 @@ CardFactory *CardFactory::cardFactory;
 
 int main()
 {
-    CardFactory *cf = CardFactory::getFactory();
-    setup();
-    loop();
+    Table *table = setupTable(false);
+    loop(*table);
 }
 
 // sets up all of the variables for the game to take place
-void setup()
+Table *setupTable(bool save)
 {
+    CardFactory *cf = CardFactory::getFactory();
+    Table *table = new Table(name1, name2, cf);
     string name1;
     string name2;
 
@@ -43,17 +41,19 @@ void setup()
     // adds 5 cards to each player's hand
     for (int i = 0; i < 5; i++)
     {
-        table.add(table.draw(), true);
+        table->addPlayer(table->draw(), true);
     }
 
     for (int i = 0; i < 5; i++)
     {
-        table.add(table.draw(), false);
+        table->addPlayer(table->draw(), false);
     }
+
+    return table;
 }
 
 // main state of the game
-void loop()
+void loop(Table &table)
 {
     while (!table.isEmpty())
     {
@@ -104,11 +104,13 @@ void loop()
             cout << "Your top card is being added to your chains." << endl;
             cout << "" << endl;
 
-            if (!table.addCardToChain(table.discardTopCard())) {
+            if (!table.addCardToChain(table.discardTopCard()))
+            {
                 cout << "Please choose a chain to discard: (by index): " << endl;
                 cin >> index;
 
-                while (index > 1 || index < 0) {
+                while (index > 1 || index < 0)
+                {
                     cout << "Invalid index. Please choose again." << endl;
                     cin >> index;
                 }
@@ -147,7 +149,7 @@ void loop()
         // trade area phase
         for (int i = 0; i < 3; i++)
         {
-            table.add(table.draw());
+            table.addTrade(table.draw());
         }
 
         table.tradePhase();
@@ -171,16 +173,18 @@ void loop()
                 cin >> bean;
 
                 // add cards to chain if possible
-                if (table.addCardToChain(table.tradeCard(bean))) {
+                if (table.addCardToChain(table.tradeCard(bean)))
+                {
                     cout << "Please choose a chain to discard: (by index): " << endl;
                     cin >> index;
 
-                    while (index > 1 || index < 0) {
+                    while (index > 1 || index < 0)
+                    {
                         cout << "Invalid index. Please choose again." << endl;
                         cin >> index;
                     }
 
-                    table.sellChain(index);                    
+                    table.sellChain(index);
                 }
 
                 cout << "Would you like to take any cards from the trading table? (yes/no)" << endl;
@@ -191,7 +195,7 @@ void loop()
         // draw phase
         for (int i = 0; i < 2; i++)
         {
-            table.add(table.draw(), table.getTurn());
+            table.addPlayer(table.draw(), table.getTurn());
         }
 
         cout << "Here is your hand at the end of the round:" << endl;
@@ -201,7 +205,8 @@ void loop()
         cout << "Ready to continue? (yes/no)" << endl;
         cin >> trading;
 
-        while (trading != "yes") {
+        while (trading != "yes")
+        {
             cout << "Please type yes when you're ready to continue" << endl;
             cin >> trading;
         }

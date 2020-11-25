@@ -13,9 +13,8 @@ namespace cards
 
     public:
         //reconstruct the discard pile from file
-        DiscardPile();
+        DiscardPile(){};
         DiscardPile(std::istream &, const CardFactory *);
-        ~DiscardPile();
         //discard the card to the pile
         DiscardPile &operator+=(Card *);
         //Returns and removes the top card from the discard pile

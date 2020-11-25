@@ -33,7 +33,7 @@ namespace cards
 
     inline std::ostream &operator<<(std::ostream &os, const Hand &h)
     {
-        os << "Hand:\t";
+        os << "Hand\t";
         for (int i = 0; i < h.hand.size(); i++)
         {
             os << *(h.hand[i]);

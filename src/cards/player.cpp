@@ -59,8 +59,7 @@ namespace cards
 
         getline(is, line, '\n');
         Chain_Base *chain;
-        std::cout << line << std::endl;
-        while (getline(is, line, '\t') && !line.empty() && !is.eof())
+        while (!line.empty() && getline(is, line, '\t') && !is.eof())
         {
             if (line.compare("Blue") == 0)
             {
@@ -82,7 +81,7 @@ namespace cards
             {
                 chain = new Chain<Soy>(is, cf);
             }
-            else if (line.compare("Black") == 0)
+            else if (line.compare("black") == 0)
             {
                 chain = new Chain<Black>(is, cf);
             }
@@ -90,7 +89,7 @@ namespace cards
             {
                 chain = new Chain<Red>(is, cf);
             }
-            else if (line.compare("green") == 0)
+            else if (line.compare("garden") == 0)
             {
                 chain = new Chain<Garden>(is, cf);
             }

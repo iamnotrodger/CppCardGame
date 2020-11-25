@@ -1,46 +1,66 @@
 #include "discardPile.h"
+#include "createClass.h"
 
 namespace cards
 {
-    DiscardPile::DiscardPile() {
+    DiscardPile::DiscardPile(std::istream &is, const CardFactory *cf)
+    {
+        CardFactory *cardFac = cf->getFactory();
+        std::string verify = "DiscardPile";
+        std::string line;
+        getline(is, line, '\t');
 
-    }
+        //verity this class
+        if (verify != line)
+        {
+            throw CreateClass("Unable to make DiscardPile Class.");
+        }
 
-    DiscardPile::~DiscardPile() {
-        for (int i = 0; i < pile.size(); i++) {
-            delete pile[i];
+        getline(is, line, '\n');
+        for (std::string::size_type i = 0; i < line.size(); i++)
+        {
+            *this += cardFac->createCard(line[i]);
         }
     }
 
-    DiscardPile &DiscardPile::operator+=(Card * card) {
+    DiscardPile &DiscardPile::operator+=(Card *card)
+    {
         pile.push_back(card);
-
-        // std::cout << "Match" << std::endl;
-        // for (int i = 0; i < pile.size(); i++) {
-        //     std::cout << pile[i]->getName() << std::endl;
-        // }
-        // std::cout << "" << std::endl;
-
         return *this;
     }
 
-    Card * DiscardPile::pickUp() {
+    Card *DiscardPile::pickUp()
+    {
 
-        if (pile.size() == 0) {
+        if (pile.size() == 0)
+        {
             return NULL;
         }
 
-        Card * top = pile[pile.size()-1];
-        pile.erase(pile.begin() + pile.size()-1, pile.begin() + pile.size());
+        Card *top = pile[pile.size() - 1];
+        pile.erase(pile.begin() + pile.size() - 1, pile.begin() + pile.size());
         return top;
     }
 
-    Card * DiscardPile::top() {
-        if (pile.size() == 0) {
+    Card *DiscardPile::top()
+    {
+        if (pile.size() == 0)
+        {
             return NULL;
         }
 
-        Card * top = pile[pile.size()-1];
+        Card *top = pile[pile.size() - 1];
         return top;
     }
-} 
+
+    void DiscardPile::print(std::ostream &os) const
+    {
+        os << "DiscardPile\t";
+        for (unsigned i = 0; i < pile.size(); i++)
+        {
+            os << *(pile[i]);
+        }
+        os << std::endl;
+    }
+
+} // namespace cards

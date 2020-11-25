@@ -1,19 +1,53 @@
+#include <string>
 #include "table.h"
 #include "player.h"
+#include "createClass.h"
 
 namespace cards
 {
     // constructor
-    Table::Table(std::string s1, std::string s2)
+    Table::Table(std::string s1, std::string s2, const CardFactory *cf)
     {
-        playerOne = new Player(s1);
-        playerTwo = new Player(s2);
+        CardFactory *cardFactory = cf->getFactory();
+        this->playerOne = new Player(s1);
+        this->playerTwo = new Player(s2);
+        this->deck = cardFactory->getDeck();
+        this->discard = new DiscardPile();
+        this->trade = new TradeArea();
+    }
+
+    Table::Table(std::istream &is, const CardFactory *cf)
+    {
+        CardFactory *cardFac = cf->getFactory();
+        std::string verify = "Table";
+        std::string line;
+        getline(is, line, '\n');
+
+        //verity this class
+        if (verify != line)
+        {
+            throw CreateClass("Unable to make Table Class.");
+        }
+        getline(is, line, '\n');
+        this->deck = new Deck(is, cf);
+
+        getline(is, line, '\n');
+        this->playerOne = new Player(is, cf);
+
+        getline(is, line, '\n');
+        this->playerTwo = new Player(is, cf);
+
+        getline(is, line, '\n');
+        this->discard = new DiscardPile(is, cf);
+
+        getline(is, line, '\n');
+        this->trade = new TradeArea(is, cf);
     }
 
     // returns a boolean indicating who is the winner
     bool Table::win(std::string &winner)
     {
-        if (!deck.isEmpty())
+        if (!deck->isEmpty())
         {
             return false;
         }
@@ -28,6 +62,8 @@ namespace cards
         {
             winner = playerTwo->getName();
         }
+
+        return true;
     }
 
     // prints the hand or the top card of the player who has the turn
@@ -51,7 +87,7 @@ namespace cards
     }
 
     // adds a card to a player's hand
-    void Table::add(Card *card, bool playerOneHand)
+    void Table::addPlayer(Card *card, bool playerOneHand)
     {
         // true represents playerOne
         if (playerOneHand)
@@ -69,34 +105,34 @@ namespace cards
     }
 
     // adds a card to the trade area
-    void Table::add(Card *card)
+    void Table::addTrade(Card *card)
     {
-        trade += card;
+        *trade += card;
     }
 
     // removes a card from a player's hand
     void Table::discardCard(int index, bool playerOneHand)
     {
-        Card * card;
+        Card *card;
         // true represents playerOne
         if (playerOneHand)
         {
             card = playerOne->deleteCard(index);
-            discard += card;
+            *discard += card;
         }
 
         // false represents playerTwo
         else if (!playerOneHand)
         {
             card = playerTwo->deleteCard(index);
-            discard += card;
+            *discard += card;
         }
     }
 
     // removes a card from a player's hand
-    Card * Table::discardTopCard()
+    Card *Table::discardTopCard()
     {
-        Card * card;
+        Card *card;
         // true represents playerOne
         if (playerOneTurn)
         {
@@ -115,41 +151,47 @@ namespace cards
     // clears the TradeArea
     void Table::clearTrade()
     {
-        Card * card;
-        
+        Card *card;
+
         //for (int i = 0; i<trade.numCards(); i++)
-        while (trade.numCards() > 0) {
+        while (trade->numCards() > 0)
+        {
             // std::cout << "Traded" << std::endl;
-            card = trade.trade();
-            discard += card;
+            card = trade->trade();
+            *discard += card;
             // std::cout << trade.numCards() << std::endl;
         }
     }
 
     // returns the size of trade area
-    int Table::getTradeArea() {
-        if (trade.numCards() != 0) {
-            trade.show();
+    int Table::getTradeArea()
+    {
+        if (trade->numCards() != 0)
+        {
+            trade->show();
         }
-        
-        return trade.numCards();
+
+        return trade->numCards();
     }
 
     // simulates trade-discard interaction part of trade area phase
-    void Table::tradePhase() {
+    void Table::tradePhase()
+    {
 
         // runs as long as top of discard pile matches a suit in the trade phase
-        while (discard.top() != NULL && trade.legal(discard.top())) {
-            trade += discard.pickUp();
+        while (discard->top() != NULL && trade->legal(discard->top()))
+        {
+            *trade += discard->pickUp();
         }
     }
 
-    Card * Table::tradeCard(std::string bean) {
-        return trade.trade(bean);
+    Card *Table::tradeCard(std::string bean)
+    {
+        return trade->trade(bean);
     }
 
-
-    bool Table::addCardToChain(Card *card) {
+    bool Table::addCardToChain(Card *card)
+    {
         if (playerOneTurn)
         {
             return playerOne->addCardToChain(card);
@@ -160,13 +202,16 @@ namespace cards
             return playerTwo->addCardToChain(card);
         }
     }
-    
-    void Table::sellChain(int index) {
-        if (playerOneTurn) {
+
+    void Table::sellChain(int index)
+    {
+        if (playerOneTurn)
+        {
             playerOne += playerOne->sellChain(index);
         }
 
-        else {
+        else
+        {
             playerTwo += playerTwo->sellChain(index);
         }
     }

@@ -14,25 +14,31 @@ CardFactory *CardFactory::cardFactory;
 int main()
 {
     CardFactory *cf = CardFactory::getFactory();
-    fstream myfile("test.txt");
+    string line;
+    fstream myfile("player.txt");
 
     if (myfile.is_open())
     {
         // Player *pp = new Player("PeePee");
         Player *pp = new Player(myfile, cf);
+        getline(myfile, line, '\n');
+        Player *poopoo = new Player(myfile, cf);
+        // cout << line << endl;
 
-        pp->addCard(cf->createCard('B'));
-        pp->addCard(cf->createCard('B'));
-        pp->addCard(cf->createCard('C'));
-        pp->printHand(true);
+        // pp->addCard(cf->createCard('B'));
+        // pp->addCard(cf->createCard('B'));
+        // pp->addCard(cf->createCard('C'));
+        // pp->printHand(true);
 
-        pp->addCardToChain(cf->createCard('B'));
-        pp->addCardToChain(cf->createCard('B'));
-        pp->addCardToChain(cf->createCard('C'));
-        pp->addCardToChain(cf->createCard('C'));
-        pp->addCardToChain(cf->createCard('S'));
+        // pp->addCardToChain(cf->createCard('B'));
+        // pp->addCardToChain(cf->createCard('B'));
+        // pp->addCardToChain(cf->createCard('C'));
+        // pp->addCardToChain(cf->createCard('C'));
+        // pp->addCardToChain(cf->createCard('S'));
 
-        cout << (*pp) << endl;
+        // myfile << *pp;
+        cout << *pp;
+        cout << *poopoo;
     }
 
     myfile.close();

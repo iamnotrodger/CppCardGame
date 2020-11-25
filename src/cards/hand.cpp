@@ -13,7 +13,7 @@ namespace cards
         getline(is, line, '\t');
 
         //Check if this is a Hand
-        if (verify != line.substr(0, 4))
+        if (verify != line)
         {
             throw CreateClass("Unable to make Hand Class.");
         }

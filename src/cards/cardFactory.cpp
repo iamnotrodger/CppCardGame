@@ -36,7 +36,7 @@ namespace cards
         return cardFactory;
     }
 
-    Deck CardFactory::getDeck()
+    Deck *CardFactory::getDeck()
     {
         //create vector<card>
         //push blue cards
@@ -87,8 +87,7 @@ namespace cards
             cardList.push_back(gardenCard);
         }
 
-        Deck deck(cardList);
-        return deck;
+        return new Deck(cardList);
     }
 
     Card *CardFactory::createCard(char c)
