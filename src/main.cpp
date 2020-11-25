@@ -116,12 +116,6 @@ void loop()
                 table.sellChain(index);
             }
 
-            // Check if added card is the same type of the chain
-
-            // Check if chains are full
-
-            // Sell chains if needed
-
             removeTop = false;
         }
 
@@ -133,7 +127,7 @@ void loop()
         table.printHand(table.getTurn());
         cout << "" << endl;
 
-        cout << "Would you like to discard a card? " << endl;
+        cout << "Would you like to discard a card? (yes/no)" << endl;
         cin >> discard;
         cout << "" << endl;
 
@@ -164,7 +158,7 @@ void loop()
         // print trade area and optional collection!!!
 
         // Give option to take cards
-        cout << "Would you like to take any cards from the trading table? " << endl;
+        cout << "Would you like to take any cards from the trading table? (yes/no)" << endl;
         cin >> trading;
         cout << "" << endl;
 
@@ -177,13 +171,21 @@ void loop()
                 cin >> bean;
 
                 // add cards to chain if possible
-                table.addCardToChain(table.tradeCard(bean));
+                if (table.addCardToChain(table.tradeCard(bean))) {
+                    cout << "Please choose a chain to discard: (by index): " << endl;
+                    cin >> index;
 
-                cout << "Would you like to take any cards from the trading table? " << endl;
+                    while (index > 1 || index < 0) {
+                        cout << "Invalid index. Please choose again." << endl;
+                        cin >> index;
+                    }
+
+                    table.sellChain(index);                    
+                }
+
+                cout << "Would you like to take any cards from the trading table? (yes/no)" << endl;
                 cin >> trading;
             }
-
-            // remove the rest of the cards into the discard pile
         }
 
         // draw phase
@@ -196,8 +198,12 @@ void loop()
         table.printHand(table.getTurn());
 
         // this player's turn is over
-        // table.changeTurn();
-        cout << "Ready to continue?" << endl;
+        cout << "Ready to continue? (yes/no)" << endl;
         cin >> trading;
+
+        while (trading != "yes") {
+            cout << "Please type yes when you're ready to continue" << endl;
+            cin >> trading;
+        }
     }
 }
