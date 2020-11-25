@@ -1,16 +1,15 @@
 #include <iostream>
+#include <fstream>
 #include "cards/table.h"
 
 using namespace std;
 using namespace cards;
 
 // functions
-Table *setup(bool);
+Table *setup();
 void loop(Table &);
-
-// player 1 and player 2
-string name1 = "Patrick";
-string name2 = "Rodger";
+Table *load(string);
+bool save(string, Table &);
 
 // save
 bool pause = false;
@@ -19,13 +18,51 @@ CardFactory *CardFactory::cardFactory;
 
 int main()
 {
-    Table *table = setup(false);
+    Table *table = setup();
     loop(*table);
 }
 
-// sets up all of the variables for the game to take place
-Table *setup(bool save)
+//From filename is loads table game. This will throw a CreateClass Exception if the file is corrupted
+Table *load(string filename)
 {
+    CardFactory *cf = CardFactory::getFactory();
+    fstream myfile(filename);
+
+    if (myfile.is_open())
+    {
+        return new Table(myfile, cf);
+    }
+    else
+    {
+        cout << "Unable to open file: " << filename << endl;
+        return nullptr;
+    }
+}
+
+//Saves game; returns true if successful else return false
+bool save(string filename, Table &table)
+{
+    fstream myfile(filename);
+
+    if (myfile.is_open())
+    {
+        myfile << table;
+        return true;
+    }
+    else
+    {
+        cout << "Unable to open file: " << filename << endl;
+        return false;
+    }
+}
+
+// sets up all of the variables for the game to take place
+Table *setup()
+{
+    //TODO: grab name from user
+    // player 1 and player 2
+    string name1 = "Patrick";
+    string name2 = "Rodger";
     CardFactory *cf = CardFactory::getFactory();
     Table *table = new Table(name1, name2, cf);
     string name1;
