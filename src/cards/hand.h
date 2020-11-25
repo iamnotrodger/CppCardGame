@@ -12,8 +12,8 @@ namespace cards
         std::vector<Card *> hand;
 
     public:
-        Hand();
-        ~Hand();
+        Hand(){};
+        ~Hand(){};
         //reconstruct the hand from file
         Hand(std::istream &, const CardFactory *);
         //adds the card rear of the hand
@@ -33,6 +33,7 @@ namespace cards
 
     inline std::ostream &operator<<(std::ostream &os, const Hand &h)
     {
+        os << "Hand:\t";
         for (int i = 0; i < h.hand.size(); i++)
         {
             os << *(h.hand[i]);

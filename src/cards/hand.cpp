@@ -1,14 +1,28 @@
 #include "hand.h"
+#include <string>
+#include "createClass.h"
 
 namespace cards
 {
     // constructor
-    Hand::Hand()
+    Hand::Hand(std::istream &is, const CardFactory *cf)
     {
-    }
+        CardFactory *cardFac = cf->getFactory();
+        std::string verify = "Hand";
+        std::string line;
+        getline(is, line, '\t');
 
-    Hand::~Hand()
-    {
+        //Check if this is a Hand
+        if (verify != line.substr(0, 4))
+        {
+            throw CreateClass("Unable to make Hand Class.");
+        }
+
+        getline(is, line, '\n');
+        for (std::string::size_type i = 0; i < line.size(); i++)
+        {
+            *this += cardFac->createCard(line[i]);
+        }
     }
 
     // REAR OF THE HAND IS THE END IF THE LIST

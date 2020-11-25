@@ -47,7 +47,7 @@ namespace cards
             int size = c.chain.size();
             if (size > 0)
             {
-                os << c.chain[0]->getName() << " \t ";
+                os << c.chain[0]->getName() << "\t";
                 for (unsigned i = 0; i < size; i++)
                 {
                     os << *(c.chain[i]);
@@ -75,8 +75,16 @@ namespace cards
     };
 
     template <class T>
-    Chain<T>::~Chain()
+    Chain<T>::Chain(std::istream &is, const CardFactory *cf)
     {
+        CardFactory *cardFac = cf->getFactory();
+        std::string line;
+
+        getline(is, line, '\n');
+        for (std::string::size_type i = 0; i < line.size(); i++)
+        {
+            *this += cardFac->createCard(line[i]);
+        }
     }
 
     template <class T>

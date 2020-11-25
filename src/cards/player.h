@@ -55,7 +55,9 @@ namespace cards
         void printHand(bool);
 
         // helper functions
+        //Add card to the Player's Hand
         void addCard(Card *);
+        //Remove card from Player's Hand
         Card *deleteCard(int);
         bool addCardToChain(Card *);
         int sellChain(int);
@@ -64,13 +66,16 @@ namespace cards
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)
     {
-        os << p.name << ":\t" << p.coins << " coins" << std::endl;
+        os << "Player" << std::endl;
+        os << "Name:\t" << p.name << std::endl;
+        os << "Coins:\t" << p.coins << std::endl;
+        os << "Max Chains:\t" << p.maxChain << std::endl;
+        os << *(p.hand);
         os << "Chains:" << std::endl;
         for (unsigned i = 0; i < p.chains.size(); i++)
         {
             os << *(p.chains[i]);
         }
-        os << "Hand:\t" << *(p.hand);
 
         return os;
     };
