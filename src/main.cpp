@@ -1,91 +1,119 @@
 #include <iostream>
 #include <fstream>
 #include "cards/table.h"
+#include "cards/createClass.h"
 
 using namespace std;
 using namespace cards;
 
 // functions
-Table *setup();
-void loop(Table &);
-Table *load(string);
-bool save(string, Table &);
+Table setup();
+void loop(Table &, string &);
+Table load(string &);
+void save(string &, Table &);
 
 // save
 bool pause = false;
 
+//Card factory
 CardFactory *CardFactory::cardFactory;
 
-int main()
+int main(int argc, char **argv)
 {
-    Table *table = setup();
-    loop(*table);
+    //check if a a file was given
+    bool load_game = (argc > 0) ? true : false;
+    //if file was given use it to load the game
+    string save_file = (load_game) ? argv[1] : "saved_game.txt";
+    Table table = (load_game) ? load(save_file) : setup();
+
+    //play the game
+    loop(table, save_file);
 }
 
 //From filename is loads table game. This will throw a CreateClass Exception if the file is corrupted
-Table *load(string filename)
+Table load(string &filename)
 {
     CardFactory *cf = CardFactory::getFactory();
     fstream myfile(filename);
 
     if (myfile.is_open())
     {
-        return new Table(myfile, cf);
+        try
+        {
+            Table table = Table(myfile, cf);
+            cout << "==============================" << endl;
+            cout << "Loaded game from file '" << filename << "'." << endl;
+            cout << "==============================" << endl;
+            return table;
+        }
+        catch (CreateClass &e)
+        {
+            cout << e.what() << endl;
+            cout << "Saved file is corrupted. Unable to load game." << endl;
+            return setup();
+        }
     }
     else
     {
+        cout << "==============================" << endl;
         cout << "Unable to open file: " << filename << endl;
-        return nullptr;
+        cout << "==============================" << endl;
+        cout << endl;
+        return setup();
     }
 }
 
-//Saves game; returns true if successful else return false
-bool save(string filename, Table &table)
+//Saves the game with the specified file name, if the file does not exist one will be created
+void save(string &filename, Table &table)
 {
-    fstream myfile(filename);
+    fstream myfile;
+    myfile.open(filename, fstream::app);
 
-    if (myfile.is_open())
+    if (!myfile)
     {
-        myfile << table;
-        return true;
-    }
-    else
-    {
+        cout << "==============================" << endl;
         cout << "Unable to open file: " << filename << endl;
-        return false;
+        cout << "Creating file: " << filename << endl;
+        cout << "==============================" << endl;
     }
+
+    myfile << table;
+
+    cout << "==============================" << endl;
+    cout << "Game has been saved to file: " << filename << endl;
+    cout << "==============================" << endl;
 }
 
 // sets up all of the variables for the game to take place
-Table *setup()
+Table setup()
 {
     //TODO: grab name from user
     // player 1 and player 2
     string name1 = "Patrick";
     string name2 = "Rodger";
     CardFactory *cf = CardFactory::getFactory();
-    Table *table = new Table(name1, name2, cf);
-    string name1;
-    string name2;
+    Table table = Table(name1, name2, cf);
 
-    cout << "Welcome to our C++ project!" << endl;
+    cout << "==============================" << endl;
+    cout << "Creating new game" << endl;
+    cout << "==============================" << endl;
 
     // adds 5 cards to each player's hand
     for (int i = 0; i < 5; i++)
     {
-        table->addPlayer(table->draw(), true);
+        table.addPlayer(table.draw(), true);
     }
 
     for (int i = 0; i < 5; i++)
     {
-        table->addPlayer(table->draw(), false);
+        table.addPlayer(table.draw(), false);
     }
 
     return table;
 }
 
 // main state of the game
-void loop(Table &table)
+void loop(Table &table, string &save_file)
 {
     while (!table.isEmpty())
     {
