@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include "table.h"
 #include "player.h"
 #include "createClass.h"
@@ -21,6 +22,7 @@ namespace cards
         CardFactory *cardFac = cf->getFactory();
         std::string verify = "Table";
         std::string line;
+        std::istringstream ss;
         getline(is, line, '\n');
 
         //verity this class
@@ -28,6 +30,17 @@ namespace cards
         {
             throw CreateClass("Unable to make Table Class.");
         }
+
+        getline(is, line, '\n');
+        getline(is, line, '\t');
+        getline(is, line, '\n');
+        ss.str(line);
+        ss >> this->playerOneTurn;
+        if (ss.fail())
+        {
+            throw CreateClass("Unable to create Table Class");
+        }
+
         getline(is, line, '\n');
         this->deck = new Deck(is, cf);
 

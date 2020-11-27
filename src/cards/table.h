@@ -52,6 +52,8 @@ namespace cards
     {
         os << "Table" << std::endl;
         os << std::endl;
+        os << "Player One's Turn:\t" << t.playerOneTurn << std::endl;
+        os << std::endl;
         os << *(t.deck) << std::endl;
         os << *(t.playerOne);
         os << *(t.playerTwo);

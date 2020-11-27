@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include "cards/table.h"
 #include "cards/createClass.h"
@@ -11,9 +12,8 @@ Table setup();
 void loop(Table &, string &);
 Table load(string &);
 void save(string &, Table &);
-
-// save
-bool pause = false;
+void exiting();
+string getName();
 
 //Card factory
 CardFactory *CardFactory::cardFactory;
@@ -21,8 +21,8 @@ CardFactory *CardFactory::cardFactory;
 int main(int argc, char **argv)
 {
     //check if a a file was given
-    bool load_game = (argc > 0) ? true : false;
-    //if file was given use it to load the game
+    bool load_game = (argc > 1) ? true : false;
+    // //if file was given use it to load the game
     string save_file = (load_game) ? argv[1] : "saved_game.txt";
     Table table = (load_game) ? load(save_file) : setup();
 
@@ -84,18 +84,42 @@ void save(string &filename, Table &table)
     cout << "==============================" << endl;
 }
 
+void exiting(string filename, Table &table)
+{
+    string flag;
+    cout << endl;
+    cout << "Would you like to exit and save the game? (Y/N)" << endl;
+    cin >> flag;
+
+    if (flag.compare("YES") == 0 || flag.compare("yes") == 0 || flag.compare("Y") == 0 || flag.compare("y") == 0)
+    {
+        cout << "Saving game..." << endl;
+        save(filename, table);
+        exit(1);
+    }
+}
+
+string getName()
+{
+    string name;
+    cout << "Plese enter a name: ";
+    getline(cin, name);
+    return name;
+}
+
 // sets up all of the variables for the game to take place
 Table setup()
 {
-    //TODO: grab name from user
     // player 1 and player 2
-    string name1 = "Patrick";
-    string name2 = "Rodger";
+    string name1 = getName();
+    string name2 = getName();
     CardFactory *cf = CardFactory::getFactory();
     Table table = Table(name1, name2, cf);
 
     cout << "==============================" << endl;
     cout << "Creating new game" << endl;
+    cout << "Player One: " << name1 << endl;
+    cout << "Player Two: " << name2 << endl;
     cout << "==============================" << endl;
 
     // adds 5 cards to each player's hand
@@ -113,7 +137,7 @@ Table setup()
 }
 
 // main state of the game
-void loop(Table &table, string &save_file)
+void loop(Table &table, string &filename)
 {
     while (!table.isEmpty())
     {
@@ -123,11 +147,6 @@ void loop(Table &table, string &save_file)
         string trading;
         string bean;
         int index;
-
-        // save functionality
-        // if (pause) {
-        //     save()
-        // }
 
         cout << "Here is your starting hand: " << endl;
         table.printHand(table.getTurn());
@@ -261,14 +280,7 @@ void loop(Table &table, string &save_file)
         cout << "Here is your hand at the end of the round:" << endl;
         table.printHand(table.getTurn());
 
-        // this player's turn is over
-        cout << "Ready to continue? (yes/no)" << endl;
-        cin >> trading;
-
-        while (trading != "yes")
-        {
-            cout << "Please type yes when you're ready to continue" << endl;
-            cin >> trading;
-        }
+        cout << "==============================" << endl;
+        exiting(filename, table);
     }
 }
