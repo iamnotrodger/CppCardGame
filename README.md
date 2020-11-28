@@ -5,6 +5,9 @@
 
 This is a card game. 
 
+## Compiling
+g++ -std=c++11 src/main.cpp src/cards/*.cpp
+
 ## Starting a New Game
 To start a new game simply run the compiled file.
 - Example:
