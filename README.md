@@ -1,4 +1,7 @@
 # Card Game
+- Team Members:
+  - Rodger Retanal - 300052309
+  - Patric Huang - 300097191
 
 This is a card game. 
 
