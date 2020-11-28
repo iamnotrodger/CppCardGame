@@ -62,6 +62,7 @@ namespace cards
         bool addCardToChain(Card *);
         int sellChain(int);
         void deleteChain(int);
+        int getHandSize() {return hand->getSize();}
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Player &p)

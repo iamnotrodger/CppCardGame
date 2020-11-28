@@ -46,6 +46,10 @@ namespace cards
         void clearTrade();
         Card *discardTopCard();
         void sellChain(int);
+        int getChain();
+        int money();
+        void buyChain();
+        int getHandSize();
     };
 
     inline std::ostream &operator<<(std::ostream &os, const Table &t)

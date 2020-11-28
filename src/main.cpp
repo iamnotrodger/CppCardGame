@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <cstdlib>
 #include <fstream>
 #include "cards/table.h"
@@ -28,6 +30,17 @@ int main(int argc, char **argv)
 
     //play the game
     loop(table, save_file);
+}
+
+// helper function
+bool checkYes(string response) {
+    if (response.compare("YES") == 0 || response.compare("yes") == 0 || response.compare("Y") == 0 || response.compare("y") == 0) {
+        return true;
+    }
+
+    else {
+        return false;
+    }
 }
 
 //From filename is loads table game. This will throw a CreateClass Exception if the file is corrupted
@@ -102,7 +115,7 @@ void exiting(string filename, Table &table)
 string getName()
 {
     string name;
-    cout << "Plese enter a name: ";
+    cout << "Please enter a name: ";
     getline(cin, name);
     return name;
 }
@@ -158,9 +171,9 @@ void loop(Table &table, string &filename)
             cout << "Would you like to take any cards from the trading table? " << endl;
             cin >> trading;
 
-            if (trading == "yes")
+            if (checkYes(trading))
             {
-                while (trading == "yes" && table.getTradeArea() != 0)
+                while (checkYes(trading) && table.getTradeArea() != 0)
                 {
                     cout << "Choose a card (by suit): " << endl;
                     cin >> bean;
@@ -177,6 +190,8 @@ void loop(Table &table, string &filename)
             table.clearTrade();
         }
 
+        int limit = table.getChain();
+        string line;
         // adding top card phase
         while (removeTop)
         {
@@ -188,9 +203,15 @@ void loop(Table &table, string &filename)
                 cout << "Please choose a chain to discard: (by index): " << endl;
                 cin >> index;
 
-                while (index > 1 || index < 0)
+                while (cin.fail() || index > limit-1 || index < 0)
                 {
+                    if (cin.fail()) {
+                        cin.clear();
+                        break;
+                    }
                     cout << "Invalid index. Please choose again." << endl;
+
+                    cin.clear();
                     cin >> index;
                 }
 
@@ -212,10 +233,19 @@ void loop(Table &table, string &filename)
         cin >> discard;
         cout << "" << endl;
 
-        if (discard == "yes")
+        if (checkYes(discard) && table.getHandSize() != 0)
         {
             cout << "Which card would you like to discard (choose index): " << endl;
             cin >> discard_index;
+
+            while (cin.fail() || discard_index < 0 || discard_index >= table.getHandSize()) {
+                if (cin.fail()) {
+                    cin.clear();
+                    break;
+                }
+                cout << "Invalid index. Please choose again." << endl;
+                cin >> discard_index;
+            }
 
             table.discardCard(discard_index, table.getTurn());
 
@@ -243,9 +273,11 @@ void loop(Table &table, string &filename)
         cin >> trading;
         cout << "" << endl;
 
-        if (trading == "yes")
+        limit = table.getChain();
+
+        if (checkYes(trading))
         {
-            while (trading == "yes" && table.getTradeArea() != 0)
+            while (checkYes(trading) && table.getTradeArea() != 0)
             {
                 cout << "" << endl;
                 cout << "Choose a card (by suit): " << endl;
@@ -257,9 +289,15 @@ void loop(Table &table, string &filename)
                     cout << "Please choose a chain to discard: (by index): " << endl;
                     cin >> index;
 
-                    while (index > 1 || index < 0)
+                    while (cin.fail() || index > limit-1 || index < 0)
                     {
+                        if (cin.fail()) {
+                            cin.clear();
+                            break;
+                        }
                         cout << "Invalid index. Please choose again." << endl;
+
+                        cin.clear();
                         cin >> index;
                     }
 
@@ -277,10 +315,24 @@ void loop(Table &table, string &filename)
             table.addPlayer(table.draw(), table.getTurn());
         }
 
+        if (table.money() >= 3 && table.getChain() == 2) {
+            string buyChain;
+            cout << "Would you like to buy a chain" << endl;
+            cin >> buyChain;
+
+            if (checkYes(buyChain)) {
+                table.buyChain();
+            }
+        }
+
         cout << "Here is your hand at the end of the round:" << endl;
         table.printHand(table.getTurn());
 
         cout << "==============================" << endl;
         exiting(filename, table);
     }
+
+    string winner;
+    table.win(winner);
+    cout << "The winner is " + winner << endl;
 }

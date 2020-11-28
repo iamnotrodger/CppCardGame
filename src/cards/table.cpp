@@ -65,8 +65,7 @@ namespace cards
             return false;
         }
 
-        // If it's a tie, player 1 wins
-        if (playerOne->getNumCoins() >= playerTwo->getNumCoins())
+        if (playerOne->getNumCoins() > playerTwo->getNumCoins())
         {
             winner = playerOne->getName();
         }
@@ -74,6 +73,10 @@ namespace cards
         else if (playerOne->getNumCoins() < playerTwo->getNumCoins())
         {
             winner = playerTwo->getName();
+        }
+
+        else {
+            winner = "no one! It's a tie";
         }
 
         return true;
@@ -226,6 +229,54 @@ namespace cards
         else
         {
             playerTwo += playerTwo->sellChain(index);
+        }
+    }
+
+    int Table::getChain() {
+        if (playerOneTurn)
+        {
+            return playerOne->getMaxNumChains();
+        }
+
+        else
+        {
+            return playerTwo->getMaxNumChains();
+        }
+    }
+
+    int Table::money() {
+        if (playerOneTurn)
+        {
+            return playerOne->getNumCoins();
+        }
+
+        else
+        {
+            return playerTwo->getNumCoins();
+        }
+    }
+
+    void Table::buyChain() {
+        if (playerOneTurn)
+        {
+            playerOne->buyThirdChain();
+        }
+
+        else
+        {
+            playerTwo->buyThirdChain();
+        }
+    }
+
+    int Table::getHandSize() {
+        if (playerOneTurn)
+        {
+            return playerOne->getHandSize();
+        }
+
+        else
+        {
+            return playerTwo->getHandSize();
         }
     }
 
